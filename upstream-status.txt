@@ -1,0 +1,89 @@
+Upstream status checks, 2026-11-03 (inputs for the LKML report)
+
+Fedora kernel 7.1.13-100.fc43 vs stable v7.1.13
+  dist-git commit d07de2f ("kernel-7.1.13-100"), f43 branch.
+  Base: linux-7.1.13.tar.xz (name only; hash not compared with kernel.org).
+  Applied: patch-7.1-redhat.patch (82 files), linux-kernel-test.patch (empty).
+  None of the 82 files is under kernel/sched/, include/linux/sched*,
+  arch/x86/kernel/itmt.c, drivers/cpufreq/ or topology code; the patch body
+  has no match for sched_|itmt|pstate|prefcore|asym (filter self-tested on
+  known paths). Fedora config still differs from a vanilla build.
+
+The traced path in 7.1.13 (kernel/sched/core.c:ttwu_runnable())
+    if (task_on_rq_queued(p)) {
+        update_rq_clock(rq);
+        if (p->se.sched_delayed)
+            enqueue_task(rq, p, ENQUEUE_NOCLOCK | ENQUEUE_DELAYED);
+
+The same path in mainline 7.4-rc1 (6628e7d4c6), code reading only, not run:
+    update_rq_clock(rq);
+    if (p->is_blocked) {
+        if (p->se.sched_delayed)
+            enqueue_task(rq, p, ENQUEUE_NOCLOCK | ENQUEUE_DELAYED);
+        if (proxy_needs_return(rq, p))
+            return 0;
+    }
+  is_blocked is set in try_to_block_task(); 56e50ff567 "sched: Simplify
+  ttwu_runnable()" (v7.2-rc1): "both proxy and delayed tasks have
+  ->is_blocked set". So a delayed task is still re-queued in place without
+  select_task_rq() in mainline. Whether mainline reproduces is not known:
+  85570f10a4 "sched/eevdf: Move to a single runqueue" (v7.3-rc1) and
+  04998aa548 "sched/eevdf: Delayed dequeue task can't preempt" (v7.3-rc1)
+  change nearby code; their effect on this test is not known.
+
+Prior work on lore
+  Peter Zijlstra, "[PATCH v2 11/12] sched: Change ttwu_runnable() vs
+  sched_delayed", 2025-07-02, series "sched: Address schbench regression"
+  https://lore.kernel.org/all/20250702121159.535226098@infradead.org/
+    -   if (p->se.sched_delayed)
+    -           enqueue_task(rq, p, ENQUEUE_NOCLOCK | ENQUEUE_DELAYED);
+    +   if (p->se.sched_delayed) {
+    +           dequeue_task(rq, p, DEQUEUE_NOCLOCK | DEQUEUE_DELAYED | DEQUEUE_SLEEP);
+    +           return 0;
+    +   }
+  "tasks that were dequeued (and not delayed) will get a different wake-up
+  path, notably they will pass through wakeup balancing."
+  Not merged: no tip-bot mail with that subject on lore, and neither 7.1.13
+  nor 7.4-rc1 contains it. Of the series only 01/12 (psi) and 02/12
+  (dl_server) reached tip (tip-bot 2025-07-10); no tip-bot mail for 03-12,
+  no TTWU_QUEUE_DELAYED feature in 7.1.13 or 7.4-rc1, no v3 posting found.
+  Nobody on the thread states why it stopped. What the thread records
+  (read 2026-11-03, thread mbox, 101 messages):
+  - 12/12 (ttwu_queue for delayed tasks, builds on 11/12) caused large
+    schbench regressions: Shrikanth Hegde (POWER LPAR, bisected to 12/12),
+    Phil Auld (EPYC 9655P, 3x wakeup/request p99 at 128-192 threads).
+    With NO_TTWU_QUEUE_DELAYED those went away (Phil Auld, 2025-07-17), and
+    the series fixed Red Hat's "randwrite issue ... with delayed dequeue".
+  - 11/12 alone: "small regression" (Shrikanth Hegde, schbench wakeup p50
+    14 -> 18 us, p99.9 72 -> 84 us, rps 1402880 -> 1353728). Peter
+    Zijlstra, 2025-07-08: "Yes, that was more or less expected. I also see
+    a dip because of that patch, but its small compared to the gains gotten
+    by the previous patches -- so I was hoping I'd get away with it :-)"
+  - Last messages on 00/12 and 12/12: 2025-07-24. Later messages in the
+    thread are about 02/12 (dl_server) only.
+
+  Wei Yang, "[PATCH v4] sched/stats: Fix run_delay over-count for migrated
+  sched_delayed tasks", 2026-10-24, not merged in 7.4-rc1
+  https://lore.kernel.org/all/20261024042753.2276779-1-albin_yang@163.com/
+  A sched_delayed task migrated by active balance or move_queued_task gets
+  the sleep between migration and wakeup added to run_delay. The repro's
+  wait% is run_delay from /proc/thread-self/schedstat, and the traces show
+  active-balance migrations, so wait% on 7.1.13 can include that over-count.
+  stacked / handoff_max_ms are user-space timestamps and are not affected.
+  Size of the over-count in this test: not measured. (Inference, not
+  measured: the workers sleep ~10 us per cycle, so each such event would
+  add about that much, small next to 1 ms stalls.)
+
+  Related reports, different symptom (not the same issue):
+  - "sched/fair: DELAY_DEQUEUE causes ~25% pipe IPC regression on
+    Raspberry Pi 5", 2026-04
+  - "scheduler performance regression since v6.11", 2025-05 (schbench)
+
+  Searches with no hit: "sched_delayed asym_packing", "sched_delayed itmt",
+  'sched_delayed "asym packing"'. Searches that did return hits served as the
+  positive control for the search itself.
+
+Mainline commits since v7.1 by Andrea Righi on the traced code
+  a49653d0ab sched/core: Mark wakeups completed through ttwu_runnable() (v7.4-rc1, no functional change)
+  c8fc4136fd sched/fair: Honor asymmetric SMT priority in idle selection (v7.4-rc1)
+  648d44bda7 sched/topology: Add asymmetric SMT packing override (v7.4-rc1)

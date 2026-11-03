@@ -1,0 +1,22 @@
+# sudo ./ab.sh 5   (2026-10-31, CPUs 4-7, waker CPU 2; order per round: ITMT on, ITMT off, ITMT on + NO_DELAY_DEQUEUE)
+SUMMARY itmt=Y delay_dequeue=Y allowed_cpus=4,5,6,7 waker_cpu=2 seconds=10 wait%=0.83,0.85 burst_max_ms=2.012,2.427 stacked=63,75 wakes=9762,9760 handoff_max_ms=1.002,1.000 waker_wait%=0.016
+SUMMARY itmt=N delay_dequeue=Y allowed_cpus=4,5,6,7 waker_cpu=2 seconds=10 wait%=0.00,0.00 burst_max_ms=1.020,1.020 stacked=0,0 wakes=9841,9841 handoff_max_ms=0.007,0.006 waker_wait%=0.045
+SUMMARY itmt=Y delay_dequeue=N allowed_cpus=4,5,6,7 waker_cpu=2 seconds=10 wait%=0.06,0.09 burst_max_ms=2.000,2.007 stacked=3,5 wakes=9838,9835 handoff_max_ms=1.009,0.999 waker_wait%=0.008
+SUMMARY itmt=Y delay_dequeue=Y allowed_cpus=4,5,6,7 waker_cpu=2 seconds=10 wait%=0.16,0.17 burst_max_ms=2.012,2.225 stacked=11,14 wakes=9828,9827 handoff_max_ms=0.998,0.998 waker_wait%=0.008
+SUMMARY itmt=N delay_dequeue=Y allowed_cpus=4,5,6,7 waker_cpu=2 seconds=10 wait%=0.00,0.00 burst_max_ms=1.016,1.020 stacked=0,0 wakes=9845,9845 handoff_max_ms=0.005,0.005 waker_wait%=0.016
+SUMMARY itmt=Y delay_dequeue=N allowed_cpus=4,5,6,7 waker_cpu=2 seconds=10 wait%=0.07,0.07 burst_max_ms=2.006,2.010 stacked=4,1 wakes=9837,9837 handoff_max_ms=0.993,1.001 waker_wait%=0.017
+SUMMARY itmt=Y delay_dequeue=Y allowed_cpus=4,5,6,7 waker_cpu=2 seconds=10 wait%=0.53,0.51 burst_max_ms=2.010,2.009 stacked=45,41 wakes=9792,9794 handoff_max_ms=1.000,0.999 waker_wait%=0.016
+SUMMARY itmt=N delay_dequeue=Y allowed_cpus=4,5,6,7 waker_cpu=2 seconds=10 wait%=0.00,0.00 burst_max_ms=1.016,1.016 stacked=0,0 wakes=9843,9843 handoff_max_ms=0.005,0.005 waker_wait%=0.046
+SUMMARY itmt=Y delay_dequeue=N allowed_cpus=4,5,6,7 waker_cpu=2 seconds=10 wait%=0.03,0.01 burst_max_ms=2.010,1.016 stacked=2,1 wakes=9840,9843 handoff_max_ms=0.993,0.993 waker_wait%=0.017
+SUMMARY itmt=Y delay_dequeue=Y allowed_cpus=4,5,6,7 waker_cpu=2 seconds=10 wait%=0.40,0.41 burst_max_ms=2.014,2.010 stacked=34,29 wakes=9805,9804 handoff_max_ms=0.998,1.007 waker_wait%=0.017
+SUMMARY itmt=N delay_dequeue=Y allowed_cpus=4,5,6,7 waker_cpu=2 seconds=10 wait%=0.00,0.00 burst_max_ms=1.017,1.016 stacked=0,0 wakes=9843,9845 handoff_max_ms=0.006,0.006 waker_wait%=0.009
+SUMMARY itmt=Y delay_dequeue=N allowed_cpus=4,5,6,7 waker_cpu=2 seconds=10 wait%=0.03,0.03 burst_max_ms=1.996,2.012 stacked=1,1 wakes=9840,9840 handoff_max_ms=0.936,0.986 waker_wait%=0.007
+SUMMARY itmt=Y delay_dequeue=Y allowed_cpus=4,5,6,7 waker_cpu=2 seconds=10 wait%=0.38,0.43 burst_max_ms=1.997,2.014 stacked=35,27 wakes=9806,9802 handoff_max_ms=0.999,0.999 waker_wait%=0.017
+SUMMARY itmt=N delay_dequeue=Y allowed_cpus=4,5,6,7 waker_cpu=2 seconds=10 wait%=0.00,0.00 burst_max_ms=1.017,1.020 stacked=0,0 wakes=9844,9845 handoff_max_ms=0.005,0.006 waker_wait%=0.018
+SUMMARY itmt=Y delay_dequeue=N allowed_cpus=4,5,6,7 waker_cpu=2 seconds=10 wait%=0.05,0.06 burst_max_ms=2.010,2.001 stacked=2,3 wakes=9839,9838 handoff_max_ms=1.002,0.999 waker_wait%=0.013
+restored itmt=Y DELAY_DEQUEUE
+
+# taskset -c 4-7,20-23 ./asym_stack2 2 1000 10 10 2   (SMT siblings allowed, ITMT on, DELAY_DEQUEUE on), 3 runs
+SUMMARY itmt=? delay_dequeue=? allowed_cpus=4,5,6,7,20,21,22,23 waker_cpu=2 seconds=10 wait%=0.08,0.10 burst_max_ms=1.209,2.016 stacked=8,7 wakes=9824,9822 handoff_max_ms=1.001,1.008 waker_wait%=0.016
+SUMMARY itmt=? delay_dequeue=? allowed_cpus=4,5,6,7,20,21,22,23 waker_cpu=2 seconds=10 wait%=0.03,0.02 burst_max_ms=1.025,1.017 stacked=3,2 wakes=9829,9829 handoff_max_ms=0.999,0.999 waker_wait%=0.016
+SUMMARY itmt=? delay_dequeue=? allowed_cpus=4,5,6,7,20,21,22,23 waker_cpu=2 seconds=10 wait%=0.00,0.00 burst_max_ms=1.021,1.020 stacked=0,0 wakes=9831,9832 handoff_max_ms=0.007,0.008 waker_wait%=0.016

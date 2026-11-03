@@ -1,0 +1,88 @@
+# sudo bpftrace stackcheck.bt -c "taskset -c 4-7 ./asym_stack2 2 1000 10 30 2", 2 runs, defaults, 2026-11-03T15:35:01+01:00
+## trace run 1
+Attached 6 probes
+SUMMARY itmt=Y delay_dequeue=Y allowed_cpus=4,5,6,7 waker_cpu=2 seconds=30 top_rank=unique(cpu6:231) smt_pairs_in_set=0 governor=performance minmax=pinned boost=0 wait%=0.96,0.95 burst_max_ms=2.015,2.012 stacked=239,238 wakes=29218,29222 handoff_max_ms=1.010,1.238 waker_wait%=0.033
+@long_waits[7, migration/7]: 1
+@long_waits[5, slack]: 1
+@long_waits[4, kcompactd0]: 1
+@long_waits[6, ServiceWorker t]: 1
+@long_waits[5, ThreadPoolForeg]: 1
+@long_waits[5, swapper/5]: 5
+@long_waits[4, swapper/4]: 12
+@long_waits[7, swapper/7]: 15
+@long_waits[6, other worker]: 440
+@long_waits_other_arrived[migrated here after the waiter's waking]: 3
+@long_waits_other_arrived[migrated here before the waiter's waking]: 29
+@long_waits_other_arrived_by_wakeup[0, 0]: 1
+@long_waits_other_arrived_by_wakeup[0, 1]: 53
+@long_waits_other_arrived_by_wakeup[1, 0]: 354
+@long_waits_other_move_stack[
+        perf_trace_sched_migrate_task+16
+        set_task_cpu+316
+        detach_tasks+271
+        sched_balance_rq+433
+        sched_balance_newidle+768
+        pick_next_task_fair+83
+        pick_next_task+96
+        __schedule+369
+]: 1
+@long_waits_other_move_stack[
+        perf_trace_sched_migrate_task+16
+        set_task_cpu+316
+        active_load_balance_cpu_stop+691
+        cpu_stopper_thread+163
+        smpboot_thread_fn+243
+        kthread+227
+        ret_from_fork+417
+        ret_from_fork_asm+26
+]: 31
+@long_waits_total: 477
+@long_waits_wakeup[0, 0]: 1
+@long_waits_wakeup[0, 1]: 40
+@long_waits_wakeup[1, 0]: 436
+@wakeups[1, 1]: 1
+@wakeups[0, 0]: 3
+@wakeups[1, 0]: 519
+@wakeups[0, 1]: 57918
+## trace run 2
+Attached 6 probes
+SUMMARY itmt=Y delay_dequeue=Y allowed_cpus=4,5,6,7 waker_cpu=2 seconds=30 top_rank=unique(cpu6:231) smt_pairs_in_set=0 governor=performance minmax=pinned boost=0 wait%=0.56,0.57 burst_max_ms=2.022,2.013 stacked=144,140 wakes=29336,29334 handoff_max_ms=1.010,1.830 waker_wait%=0.024
+@long_waits[4, claude]: 1
+@long_waits[4, Chrome_IOThread]: 1
+@long_waits[7, kworker/u128:0]: 1
+@long_waits[5, ThreadPoolForeg]: 1
+@long_waits[7, ThreadPoolForeg]: 1
+@long_waits[5, swapper/5]: 5
+@long_waits[4, swapper/4]: 7
+@long_waits[7, swapper/7]: 8
+@long_waits[6, other worker]: 258
+@long_waits_other_arrived[migrated here after the waiter's waking]: 8
+@long_waits_other_arrived[migrated here before the waiter's waking]: 16
+@long_waits_other_arrived_by_wakeup[0, 1]: 36
+@long_waits_other_arrived_by_wakeup[1, 0]: 198
+@long_waits_other_move_stack[
+        perf_trace_sched_migrate_task+16
+        set_task_cpu+316
+        try_to_wake_up+387
+        autoremove_wake_function+22
+        __wake_up_common+114
+        eventfd_write+193
+        vfs_write+206
+        ksys_write+115
+]: 1
+@long_waits_other_move_stack[
+        perf_trace_sched_migrate_task+16
+        set_task_cpu+316
+        active_load_balance_cpu_stop+691
+        cpu_stopper_thread+163
+        smpboot_thread_fn+243
+        kthread+227
+        ret_from_fork+417
+        ret_from_fork_asm+26
+]: 23
+@long_waits_total: 283
+@long_waits_wakeup[0, 1]: 27
+@long_waits_wakeup[1, 0]: 256
+@wakeups[0, 0]: 3
+@wakeups[1, 0]: 300
+@wakeups[0, 1]: 58367

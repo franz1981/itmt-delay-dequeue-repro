@@ -1,0 +1,44 @@
+# uname -r
+7.1.13-100.fc43.x86_64
+# /proc/sys/kernel/tainted
+0
+# /proc/version
+Linux version 7.1.13-100.fc43.x86_64 (mockbuild@ebc6c8b5a26f4567a2139a1bac896fe6) (gcc (GCC) 15.3.1 20260722 (Red Hat 15.3.1-1), GNU ld version 2.45.1-5.fc43) #1 SMP PREEMPT_DYNAMIC Wed Sep  2 14:02:20 UTC 2026
+# sched_itmt_enabled
+Y
+# /sys/kernel/debug/sched/features
+PLACE_LAG PLACE_DEADLINE_INITIAL PLACE_REL_DEADLINE RUN_TO_PARITY PREEMPT_SHORT NO_NEXT_BUDDY PICK_BUDDY CACHE_HOT_BUDDY DELAY_DEQUEUE DELAY_ZERO NO_PARANOID_AVG WAKEUP_PREEMPTION HRTICK HRTICK_DL NONTASK_CAPACITY TTWU_QUEUE SIS_UTIL NO_WARN_DOUBLE_CLOCK NO_RT_PUSH_IPI NO_RT_RUNTIME_SHARE NO_LB_MIN ATTACH_AGE_LOAD WA_IDLE WA_WEIGHT WA_BIAS UTIL_EST NO_LATENCY_WARN NI_RANDOM NI_RATE 
+# cpufreq (cpu4-7): governor min max boost
+cpu4 performance 4300000 4300000
+cpu5 performance 4300000 4300000
+cpu6 performance 4300000 4300000
+cpu7 performance 4300000 4300000
+boost 0
+# amd_pstate status
+active
+# preferred-core ranking (amd_pstate_prefcore_ranking) per cpu
+0:206 1:236 2:226 3:236 4:211 5:216 6:231 7:221 8:171 9:191 10:186 11:196 12:181 13:166 14:176 15:201 16:206 17:236 18:226 19:236 20:211 21:216 22:231 23:221 24:171 25:191 26:186 27:196 28:181 29:166 30:176 31:201 
+# SMT siblings
+cpu4: 4,20
+cpu5: 5,21
+cpu6: 6,22
+cpu7: 7,23
+# lscpu
+CPU(s):                                  32
+Model name:                              AMD Ryzen 9 7950X 16-Core Processor
+Thread(s) per core:                      2
+Core(s) per socket:                      16
+Socket(s):                               1
+CPU(s) scaling MHz:                      95%
+NUMA node(s):                            2
+NUMA node0 CPU(s):                       0-7,16-23
+NUMA node1 CPU(s):                       8-15,24-31
+# gcc
+gcc (GCC) 15.3.1 20260722 (Red Hat 15.3.1-1)
+
+# re-checked 2026-10-31 09:22: uname, tainted=0, sched_itmt_enabled=Y, DELAY_DEQUEUE, cpu2/4-7 performance 4300000-4300000, boost 0, smt on: unchanged
+# added 2026-10-31
+CONFIG_HZ=1000, sched base_slice_ns=2800000, preempt=full (lazy)
+/sys/kernel/debug/x86/sched_core_priority equals the prefcore ranking above
+cpu cgroup controller on (systemd user slices); runs were started from a desktop terminal
+# re-checked 2026-11-03 15:38 for the final run: uname, tainted=0, sched_itmt_enabled=Y, features unchanged, cpu4-7 performance 4300000-4300000, boost 0; amd_pstate_highest_perf cpu4-7 = 166 166 166 166, amd_pstate_max_freq 5883197 each

@@ -1,0 +1,183 @@
+# final.sh reps=5 secs=30 cpus=4-7 siblings=20-23 waker=2 start=2026-11-03T15:24:40+01:00
+# uname: 7.1.13-100.fc43.x86_64  tainted: 0  cmdline: BOOT_IMAGE=(hd1,gpt5)/vmlinuz-7.1.13-100.fc43.x86_64 root=UUID=<redacted> ro ro rhgb quiet hpet=disable clocksource=tsc tsc=reliable amdgpu.gfxoff=0
+# model name	: AMD Ryzen 9 7950X 16-Core Processor
+# itmt=Y features: PLACE_LAG PLACE_DEADLINE_INITIAL PLACE_REL_DEADLINE RUN_TO_PARITY PREEMPT_SHORT NO_NEXT_BUDDY PICK_BUDDY CACHE_HOT_BUDDY DELAY_DEQUEUE DELAY_ZERO NO_PARANOID_AVG WAKEUP_PREEMPTION HRTICK HRTICK_DL NONTASK_CAPACITY TTWU_QUEUE SIS_UTIL NO_WARN_DOUBLE_CLOCK NO_RT_PUSH_IPI NO_RT_RUNTIME_SHARE NO_LB_MIN ATTACH_AGE_LOAD WA_IDLE WA_WEIGHT WA_BIAS UTIL_EST NO_LATENCY_WARN NI_RANDOM NI_RATE 
+# boost=0 amd_pstate=active
+# cpu:governor:min-max:rank  0:performance:4300000-4300000:206 1:performance:4300000-4300000:236 2:performance:4300000-4300000:226 3:performance:4300000-4300000:236 4:performance:4300000-4300000:211 5:performance:4300000-4300000:216 6:performance:4300000-4300000:231 7:performance:4300000-4300000:221 8:performance:4300000-4300000:171 9:performance:4300000-4300000:191 10:performance:4300000-4300000:186 11:performance:4300000-4300000:196 12:performance:4300000-4300000:181 13:performance:4300000-4300000:166 14:performance:4300000-4300000:176 15:performance:4300000-4300000:201 16:performance:4300000-4300000:206 17:performance:4300000-4300000:236 18:performance:4300000-4300000:226 19:performance:4300000-4300000:236 20:performance:4300000-4300000:211 21:performance:4300000-4300000:216 22:performance:4300000-4300000:231 23:performance:4300000-4300000:221 24:performance:4300000-4300000:171 25:performance:4300000-4300000:191 26:performance:4300000-4300000:186 27:performance:4300000-4300000:196 28:performance:4300000-4300000:181 29:performance:4300000-4300000:166 30:performance:4300000-4300000:176 31:performance:4300000-4300000:201 
+# base_slice_ns=2800000 HZ=1000 preempt=full (lazy) 
+# loadavg: 0.29 0.33 0.68 1/2869 1789089
+# busiest processes at start:
+#    2.9 chrome
+#    2.8 chrome
+#    1.9 gnome-terminal-
+#    1.7 claude
+#    1.5 chrome
+#    1.4 gnome-shell
+#    1.3 signal-desktop
+## round 1 config default cpus 4-7 15:24:41 loadavg 0.29
+preflight: top_rank=unique(cpu6:231) smt_pairs_in_set=0 governor=performance minmax=pinned boost=0
+threads=2 burst_us=1000 gap_us=10 seconds=30 waker_cpu=2
+worker 0: wait 0.60% (run_ns 29447687877 wait_ns 178256072) bursts 29351 vcsw 29351 burst p50 1.003 p99 1.008 p99.9 1.802 max 2.015 ms handoff p50 0.003 p99 0.004 p99.9 0.997 max 1.296 ms stacked(>=0.5ms) 142 of 29350
+  published-start-CPU overlap 121 of 29351 bursts (0.41%); burst starts per CPU: 4:218 5:107 6:13661 7:15365
+worker 1: wait 0.61% (run_ns 29444443946 wait_ns 180826779) bursts 29349 vcsw 29348 burst p50 1.003 p99 1.008 p99.9 1.681 max 2.014 ms handoff p50 0.003 p99 0.004 p99.9 0.997 max 2.210 ms stacked(>=0.5ms) 140 of 29348
+  published-start-CPU overlap 137 of 29349 bursts (0.47%); burst starts per CPU: 4:77 5:23 6:15684 7:13565
+SUMMARY itmt=Y delay_dequeue=Y allowed_cpus=4,5,6,7 waker_cpu=2 seconds=30 top_rank=unique(cpu6:231) smt_pairs_in_set=0 governor=performance minmax=pinned boost=0 wait%=0.60,0.61 burst_max_ms=2.015,2.014 stacked=142,140 wakes=29350,29348 handoff_max_ms=1.296,2.210 waker_wait%=0.020
+## round 1 config itmt-off cpus 4-7 15:25:12 loadavg 1.29
+preflight: top_rank=unique(cpu6:231) smt_pairs_in_set=0 governor=performance minmax=pinned boost=0
+threads=2 burst_us=1000 gap_us=10 seconds=30 waker_cpu=2
+worker 0: wait 0.00% (run_ns 29625349375 wait_ns 313320) bursts 29525 vcsw 29525 burst p50 1.003 p99 1.005 p99.9 1.011 max 1.022 ms handoff p50 0.003 p99 0.003 p99.9 0.007 max 0.025 ms stacked(>=0.5ms) 0 of 29524
+  published-start-CPU overlap 0 of 29525 bursts (0.00%); burst starts per CPU: 4:15 5:29510
+worker 1: wait 0.00% (run_ns 29627321970 wait_ns 283130) bursts 29535 vcsw 29534 burst p50 1.003 p99 1.004 p99.9 1.017 max 1.040 ms handoff p50 0.003 p99 0.003 p99.9 0.004 max 0.005 ms stacked(>=0.5ms) 0 of 29534
+  published-start-CPU overlap 0 of 29535 bursts (0.00%); burst starts per CPU: 6:29535
+SUMMARY itmt=N delay_dequeue=Y allowed_cpus=4,5,6,7 waker_cpu=2 seconds=30 top_rank=unique(cpu6:231) smt_pairs_in_set=0 governor=performance minmax=pinned boost=0 wait%=0.00,0.00 burst_max_ms=1.022,1.040 stacked=0,0 wakes=29524,29534 handoff_max_ms=0.025,0.005 waker_wait%=0.023
+## round 1 config no-delay-dequeue cpus 4-7 15:25:43 loadavg 1.81
+preflight: top_rank=unique(cpu6:231) smt_pairs_in_set=0 governor=performance minmax=pinned boost=0
+threads=2 burst_us=1000 gap_us=10 seconds=30 waker_cpu=2
+worker 0: wait 0.08% (run_ns 29600404815 wait_ns 23585495) bursts 29506 vcsw 29506 burst p50 1.003 p99 1.005 p99.9 1.013 max 2.011 ms handoff p50 0.003 p99 0.004 p99.9 0.007 max 1.259 ms stacked(>=0.5ms) 16 of 29505
+  published-start-CPU overlap 89 of 29506 bursts (0.30%); burst starts per CPU: 4:288 5:112 6:14605 7:14501
+worker 1: wait 0.09% (run_ns 29596097796 wait_ns 26054258) bursts 29503 vcsw 29502 burst p50 1.003 p99 1.005 p99.9 1.013 max 2.010 ms handoff p50 0.003 p99 0.004 p99.9 0.042 max 1.015 ms stacked(>=0.5ms) 14 of 29502
+  published-start-CPU overlap 75 of 29503 bursts (0.25%); burst starts per CPU: 4:128 5:50 6:14736 7:14589
+SUMMARY itmt=Y delay_dequeue=N allowed_cpus=4,5,6,7 waker_cpu=2 seconds=30 top_rank=unique(cpu6:231) smt_pairs_in_set=0 governor=performance minmax=pinned boost=0 wait%=0.08,0.09 burst_max_ms=2.011,2.010 stacked=16,14 wakes=29505,29502 handoff_max_ms=1.259,1.015 waker_wait%=0.019
+## round 1 config default+siblings cpus 4-7,20-23 15:26:14 loadavg 2.40
+preflight: top_rank=unique(cpu6:231) smt_pairs_in_set=4 governor=performance minmax=pinned boost=0
+preflight: WARNING: the set contains 4 SMT sibling pair(s); the effect is much weaker with siblings allowed. Use one hardware thread per core.
+threads=2 burst_us=1000 gap_us=10 seconds=30 waker_cpu=2
+worker 0: wait 0.01% (run_ns 29618197153 wait_ns 4114681) bursts 29535 vcsw 29534 burst p50 1.003 p99 1.009 p99.9 1.023 max 1.280 ms handoff p50 0.003 p99 0.003 p99.9 0.005 max 0.997 ms stacked(>=0.5ms) 3 of 29534
+  published-start-CPU overlap 72 of 29535 bursts (0.24%); burst starts per CPU: 4:74 5:58 6:523 7:3735 20:22 21:6 22:13082 23:12035
+worker 1: wait 0.01% (run_ns 29617720281 wait_ns 4358822) bursts 29536 vcsw 29535 burst p50 1.003 p99 1.007 p99.9 1.017 max 1.097 ms handoff p50 0.003 p99 0.003 p99.9 0.006 max 1.158 ms stacked(>=0.5ms) 4 of 29535
+  published-start-CPU overlap 69 of 29536 bursts (0.23%); burst starts per CPU: 4:15 5:7 6:1437 7:6048 20:4 21:9 22:14474 23:7542
+SUMMARY itmt=Y delay_dequeue=Y allowed_cpus=4,5,6,7,20,21,22,23 waker_cpu=2 seconds=30 top_rank=unique(cpu6:231) smt_pairs_in_set=4 governor=performance minmax=pinned boost=0 wait%=0.01,0.01 burst_max_ms=1.280,1.097 stacked=3,4 wakes=29534,29535 handoff_max_ms=0.997,1.158 waker_wait%=0.020
+## round 2 config default cpus 4-7 15:26:45 loadavg 2.56
+preflight: top_rank=unique(cpu6:231) smt_pairs_in_set=0 governor=performance minmax=pinned boost=0
+threads=2 burst_us=1000 gap_us=10 seconds=30 waker_cpu=2
+worker 0: wait 0.44% (run_ns 29499276772 wait_ns 128928487) bursts 29405 vcsw 29404 burst p50 1.003 p99 1.007 p99.9 1.211 max 2.418 ms handoff p50 0.003 p99 0.004 p99.9 0.997 max 2.807 ms stacked(>=0.5ms) 105 of 29404
+  published-start-CPU overlap 174 of 29405 bursts (0.59%); burst starts per CPU: 4:90 5:38 6:14519 7:14758
+worker 1: wait 0.41% (run_ns 29506294315 wait_ns 121152007) bursts 29413 vcsw 29412 burst p50 1.003 p99 1.007 p99.9 1.217 max 2.013 ms handoff p50 0.003 p99 0.004 p99.9 0.997 max 0.999 ms stacked(>=0.5ms) 102 of 29412
+  published-start-CPU overlap 172 of 29413 bursts (0.58%); burst starts per CPU: 4:47 5:89 6:14777 7:14500
+SUMMARY itmt=Y delay_dequeue=Y allowed_cpus=4,5,6,7 waker_cpu=2 seconds=30 top_rank=unique(cpu6:231) smt_pairs_in_set=0 governor=performance minmax=pinned boost=0 wait%=0.44,0.41 burst_max_ms=2.418,2.013 stacked=105,102 wakes=29404,29412 handoff_max_ms=2.807,0.999 waker_wait%=0.017
+## round 2 config itmt-off cpus 4-7 15:27:16 loadavg 2.74
+preflight: top_rank=unique(cpu6:231) smt_pairs_in_set=0 governor=performance minmax=pinned boost=0
+threads=2 burst_us=1000 gap_us=10 seconds=30 waker_cpu=2
+worker 0: wait 0.00% (run_ns 29627747767 wait_ns 147580) bursts 29557 vcsw 29556 burst p50 1.002 p99 1.004 p99.9 1.010 max 1.017 ms handoff p50 0.003 p99 0.003 p99.9 0.005 max 0.006 ms stacked(>=0.5ms) 0 of 29556
+  published-start-CPU overlap 0 of 29557 bursts (0.00%); burst starts per CPU: 5:639 7:28918
+worker 1: wait 0.00% (run_ns 29625278523 wait_ns 275230) bursts 29555 vcsw 29554 burst p50 1.002 p99 1.004 p99.9 1.009 max 1.019 ms handoff p50 0.003 p99 0.003 p99.9 0.005 max 0.079 ms stacked(>=0.5ms) 0 of 29554
+  published-start-CPU overlap 0 of 29555 bursts (0.00%); burst starts per CPU: 4:22335 5:5630 6:1590
+SUMMARY itmt=N delay_dequeue=Y allowed_cpus=4,5,6,7 waker_cpu=2 seconds=30 top_rank=unique(cpu6:231) smt_pairs_in_set=0 governor=performance minmax=pinned boost=0 wait%=0.00,0.00 burst_max_ms=1.017,1.019 stacked=0,0 wakes=29556,29554 handoff_max_ms=0.006,0.079 waker_wait%=0.020
+## round 2 config no-delay-dequeue cpus 4-7 15:27:47 loadavg 3.00
+preflight: top_rank=unique(cpu6:231) smt_pairs_in_set=0 governor=performance minmax=pinned boost=0
+threads=2 burst_us=1000 gap_us=10 seconds=30 waker_cpu=2
+worker 0: wait 0.08% (run_ns 29602578383 wait_ns 22992115) bursts 29507 vcsw 29506 burst p50 1.003 p99 1.005 p99.9 1.011 max 2.013 ms handoff p50 0.003 p99 0.003 p99.9 0.006 max 1.827 ms stacked(>=0.5ms) 15 of 29506
+  published-start-CPU overlap 79 of 29507 bursts (0.27%); burst starts per CPU: 4:94 5:52 6:15331 7:14030
+worker 1: wait 0.05% (run_ns 29610995733 wait_ns 13874293) bursts 29516 vcsw 29515 burst p50 1.003 p99 1.005 p99.9 1.012 max 2.011 ms handoff p50 0.003 p99 0.003 p99.9 0.005 max 0.992 ms stacked(>=0.5ms) 5 of 29515
+  published-start-CPU overlap 79 of 29516 bursts (0.27%); burst starts per CPU: 4:46 5:138 6:14020 7:15312
+SUMMARY itmt=Y delay_dequeue=N allowed_cpus=4,5,6,7 waker_cpu=2 seconds=30 top_rank=unique(cpu6:231) smt_pairs_in_set=0 governor=performance minmax=pinned boost=0 wait%=0.08,0.05 burst_max_ms=2.013,2.011 stacked=15,5 wakes=29506,29515 handoff_max_ms=1.827,0.992 waker_wait%=0.023
+## round 2 config default+siblings cpus 4-7,20-23 15:28:18 loadavg 2.87
+preflight: top_rank=unique(cpu6:231) smt_pairs_in_set=4 governor=performance minmax=pinned boost=0
+preflight: WARNING: the set contains 4 SMT sibling pair(s); the effect is much weaker with siblings allowed. Use one hardware thread per core.
+threads=2 burst_us=1000 gap_us=10 seconds=30 waker_cpu=2
+worker 0: wait 0.02% (run_ns 29618121800 wait_ns 6691831) bursts 29525 vcsw 29525 burst p50 1.003 p99 1.007 p99.9 1.018 max 1.069 ms handoff p50 0.003 p99 0.003 p99.9 0.005 max 1.006 ms stacked(>=0.5ms) 6 of 29524
+  published-start-CPU overlap 89 of 29525 bursts (0.30%); burst starts per CPU: 4:36 5:7 6:383 7:2996 20:2 21:8 22:12628 23:13465
+worker 1: wait 0.02% (run_ns 29618095654 wait_ns 5326242) bursts 29526 vcsw 29525 burst p50 1.003 p99 1.007 p99.9 1.019 max 1.069 ms handoff p50 0.003 p99 0.003 p99.9 0.005 max 0.999 ms stacked(>=0.5ms) 5 of 29525
+  published-start-CPU overlap 83 of 29526 bursts (0.28%); burst starts per CPU: 4:44 5:73 6:846 7:3510 20:12 21:9 22:15620 23:9412
+SUMMARY itmt=Y delay_dequeue=Y allowed_cpus=4,5,6,7,20,21,22,23 waker_cpu=2 seconds=30 top_rank=unique(cpu6:231) smt_pairs_in_set=4 governor=performance minmax=pinned boost=0 wait%=0.02,0.02 burst_max_ms=1.069,1.069 stacked=6,5 wakes=29524,29525 handoff_max_ms=1.006,0.999 waker_wait%=0.019
+## round 3 config default cpus 4-7 15:28:49 loadavg 3.00
+preflight: top_rank=unique(cpu6:231) smt_pairs_in_set=0 governor=performance minmax=pinned boost=0
+threads=2 burst_us=1000 gap_us=10 seconds=30 waker_cpu=2
+worker 0: wait 0.56% (run_ns 29458682689 wait_ns 165372772) bursts 29367 vcsw 29366 burst p50 1.003 p99 1.008 p99.9 1.420 max 2.436 ms handoff p50 0.003 p99 0.005 p99.9 0.997 max 1.069 ms stacked(>=0.5ms) 140 of 29366
+  published-start-CPU overlap 102 of 29367 bursts (0.35%); burst starts per CPU: 4:151 5:120 6:14405 7:14691
+worker 1: wait 0.56% (run_ns 29457501442 wait_ns 166183125) bursts 29365 vcsw 29364 burst p50 1.003 p99 1.009 p99.9 1.410 max 2.425 ms handoff p50 0.003 p99 0.004 p99.9 0.997 max 1.015 ms stacked(>=0.5ms) 142 of 29364
+  published-start-CPU overlap 111 of 29365 bursts (0.38%); burst starts per CPU: 4:274 5:139 6:14806 7:14146
+SUMMARY itmt=Y delay_dequeue=Y allowed_cpus=4,5,6,7 waker_cpu=2 seconds=30 top_rank=unique(cpu6:231) smt_pairs_in_set=0 governor=performance minmax=pinned boost=0 wait%=0.56,0.56 burst_max_ms=2.436,2.425 stacked=140,142 wakes=29366,29364 handoff_max_ms=1.069,1.015 waker_wait%=0.028
+## round 3 config itmt-off cpus 4-7 15:29:21 loadavg 3.27
+preflight: top_rank=unique(cpu6:231) smt_pairs_in_set=0 governor=performance minmax=pinned boost=0
+threads=2 burst_us=1000 gap_us=10 seconds=30 waker_cpu=2
+worker 0: wait 0.00% (run_ns 29623715343 wait_ns 174030) bursts 29531 vcsw 29532 burst p50 1.003 p99 1.005 p99.9 1.019 max 1.025 ms handoff p50 0.003 p99 0.004 p99.9 0.005 max 0.012 ms stacked(>=0.5ms) 0 of 29530
+  published-start-CPU overlap 0 of 29531 bursts (0.00%); burst starts per CPU: 6:29531
+worker 1: wait 0.00% (run_ns 29622590647 wait_ns 170090) bursts 29529 vcsw 29528 burst p50 1.003 p99 1.008 p99.9 1.027 max 1.037 ms handoff p50 0.003 p99 0.004 p99.9 0.005 max 0.022 ms stacked(>=0.5ms) 0 of 29528
+  published-start-CPU overlap 0 of 29529 bursts (0.00%); burst starts per CPU: 4:446 7:29083
+SUMMARY itmt=N delay_dequeue=Y allowed_cpus=4,5,6,7 waker_cpu=2 seconds=30 top_rank=unique(cpu6:231) smt_pairs_in_set=0 governor=performance minmax=pinned boost=0 wait%=0.00,0.00 burst_max_ms=1.025,1.037 stacked=0,0 wakes=29530,29528 handoff_max_ms=0.012,0.022 waker_wait%=0.011
+## round 3 config no-delay-dequeue cpus 4-7 15:29:52 loadavg 3.59
+preflight: top_rank=unique(cpu6:231) smt_pairs_in_set=0 governor=performance minmax=pinned boost=0
+threads=2 burst_us=1000 gap_us=10 seconds=30 waker_cpu=2
+worker 0: wait 0.09% (run_ns 29592650370 wait_ns 26966368) bursts 29493 vcsw 29493 burst p50 1.003 p99 1.009 p99.9 1.019 max 2.017 ms handoff p50 0.003 p99 0.004 p99.9 0.073 max 1.000 ms stacked(>=0.5ms) 16 of 29492
+  published-start-CPU overlap 85 of 29493 bursts (0.29%); burst starts per CPU: 4:325 5:423 6:15578 7:13167
+worker 1: wait 0.10% (run_ns 29588847615 wait_ns 29928272) bursts 29490 vcsw 29489 burst p50 1.003 p99 1.009 p99.9 1.027 max 2.068 ms handoff p50 0.003 p99 0.004 p99.9 0.044 max 1.098 ms stacked(>=0.5ms) 13 of 29489
+  published-start-CPU overlap 85 of 29490 bursts (0.29%); burst starts per CPU: 4:363 5:412 6:13402 7:15313
+SUMMARY itmt=Y delay_dequeue=N allowed_cpus=4,5,6,7 waker_cpu=2 seconds=30 top_rank=unique(cpu6:231) smt_pairs_in_set=0 governor=performance minmax=pinned boost=0 wait%=0.09,0.10 burst_max_ms=2.017,2.068 stacked=16,13 wakes=29492,29489 handoff_max_ms=1.000,1.098 waker_wait%=0.018
+## round 3 config default+siblings cpus 4-7,20-23 15:30:23 loadavg 3.93
+preflight: top_rank=unique(cpu6:231) smt_pairs_in_set=4 governor=performance minmax=pinned boost=0
+preflight: WARNING: the set contains 4 SMT sibling pair(s); the effect is much weaker with siblings allowed. Use one hardware thread per core.
+threads=2 burst_us=1000 gap_us=10 seconds=30 waker_cpu=2
+worker 0: wait 0.05% (run_ns 29608151164 wait_ns 13892043) bursts 29511 vcsw 29510 burst p50 1.003 p99 1.010 p99.9 1.022 max 1.811 ms handoff p50 0.003 p99 0.004 p99.9 0.008 max 1.364 ms stacked(>=0.5ms) 12 of 29510
+  published-start-CPU overlap 42 of 29511 bursts (0.14%); burst starts per CPU: 4:191 5:252 6:1044 7:5008 20:25 21:1 22:14204 23:8786
+worker 1: wait 0.05% (run_ns 29606314769 wait_ns 14059422) bursts 29510 vcsw 29509 burst p50 1.003 p99 1.010 p99.9 1.025 max 1.267 ms handoff p50 0.003 p99 0.004 p99.9 0.007 max 1.143 ms stacked(>=0.5ms) 11 of 29509
+  published-start-CPU overlap 48 of 29510 bursts (0.16%); burst starts per CPU: 4:180 5:382 6:1232 7:4939 20:19 21:26 22:12829 23:9903
+SUMMARY itmt=Y delay_dequeue=Y allowed_cpus=4,5,6,7,20,21,22,23 waker_cpu=2 seconds=30 top_rank=unique(cpu6:231) smt_pairs_in_set=4 governor=performance minmax=pinned boost=0 wait%=0.05,0.05 burst_max_ms=1.811,1.267 stacked=12,11 wakes=29510,29509 handoff_max_ms=1.364,1.143 waker_wait%=0.009
+## round 4 config default cpus 4-7 15:30:54 loadavg 3.44
+preflight: top_rank=unique(cpu6:231) smt_pairs_in_set=0 governor=performance minmax=pinned boost=0
+threads=2 burst_us=1000 gap_us=10 seconds=30 waker_cpu=2
+worker 0: wait 0.82% (run_ns 29385042885 wait_ns 241914040) bursts 29289 vcsw 29288 burst p50 1.003 p99 1.008 p99.9 1.611 max 2.012 ms handoff p50 0.003 p99 0.006 p99.9 0.998 max 1.004 ms stacked(>=0.5ms) 207 of 29288
+  published-start-CPU overlap 103 of 29289 bursts (0.35%); burst starts per CPU: 4:158 5:196 6:13343 7:15592
+worker 1: wait 0.83% (run_ns 29380077356 wait_ns 246624797) bursts 29285 vcsw 29283 burst p50 1.003 p99 1.008 p99.9 1.801 max 2.217 ms handoff p50 0.003 p99 0.005 p99.9 0.998 max 1.040 ms stacked(>=0.5ms) 206 of 29284
+  published-start-CPU overlap 81 of 29285 bursts (0.28%); burst starts per CPU: 4:305 5:178 6:15909 7:12893
+SUMMARY itmt=Y delay_dequeue=Y allowed_cpus=4,5,6,7 waker_cpu=2 seconds=30 top_rank=unique(cpu6:231) smt_pairs_in_set=0 governor=performance minmax=pinned boost=0 wait%=0.82,0.83 burst_max_ms=2.012,2.217 stacked=207,206 wakes=29288,29284 handoff_max_ms=1.004,1.040 waker_wait%=0.011
+## round 4 config itmt-off cpus 4-7 15:31:25 loadavg 3.26
+preflight: top_rank=unique(cpu6:231) smt_pairs_in_set=0 governor=performance minmax=pinned boost=0
+threads=2 burst_us=1000 gap_us=10 seconds=30 waker_cpu=2
+worker 0: wait 0.00% (run_ns 29623774528 wait_ns 295090) bursts 29524 vcsw 29524 burst p50 1.003 p99 1.005 p99.9 1.011 max 1.030 ms handoff p50 0.003 p99 0.003 p99.9 0.005 max 0.049 ms stacked(>=0.5ms) 0 of 29523
+  published-start-CPU overlap 0 of 29524 bursts (0.00%); burst starts per CPU: 4:7610 5:10670 6:11244
+worker 1: wait 0.00% (run_ns 29623793360 wait_ns 201040) bursts 29525 vcsw 29524 burst p50 1.003 p99 1.006 p99.9 1.012 max 1.029 ms handoff p50 0.003 p99 0.004 p99.9 0.005 max 0.045 ms stacked(>=0.5ms) 0 of 29524
+  published-start-CPU overlap 0 of 29525 bursts (0.00%); burst starts per CPU: 6:4455 7:25070
+SUMMARY itmt=N delay_dequeue=Y allowed_cpus=4,5,6,7 waker_cpu=2 seconds=30 top_rank=unique(cpu6:231) smt_pairs_in_set=0 governor=performance minmax=pinned boost=0 wait%=0.00,0.00 burst_max_ms=1.030,1.029 stacked=0,0 wakes=29523,29524 handoff_max_ms=0.049,0.045 waker_wait%=0.006
+## round 4 config no-delay-dequeue cpus 4-7 15:31:56 loadavg 3.28
+preflight: top_rank=unique(cpu6:231) smt_pairs_in_set=0 governor=performance minmax=pinned boost=0
+threads=2 burst_us=1000 gap_us=10 seconds=30 waker_cpu=2
+worker 0: wait 0.08% (run_ns 29600985135 wait_ns 23467352) bursts 29506 vcsw 29507 burst p50 1.003 p99 1.006 p99.9 1.015 max 2.012 ms handoff p50 0.003 p99 0.004 p99.9 0.007 max 1.940 ms stacked(>=0.5ms) 8 of 29505
+  published-start-CPU overlap 84 of 29506 bursts (0.28%); burst starts per CPU: 4:134 5:66 6:15383 7:13923
+worker 1: wait 0.06% (run_ns 29606153983 wait_ns 17389554) bursts 29512 vcsw 29511 burst p50 1.003 p99 1.006 p99.9 1.016 max 2.011 ms handoff p50 0.003 p99 0.004 p99.9 0.007 max 1.003 ms stacked(>=0.5ms) 8 of 29511
+  published-start-CPU overlap 70 of 29512 bursts (0.24%); burst starts per CPU: 4:200 5:147 6:13925 7:15240
+SUMMARY itmt=Y delay_dequeue=N allowed_cpus=4,5,6,7 waker_cpu=2 seconds=30 top_rank=unique(cpu6:231) smt_pairs_in_set=0 governor=performance minmax=pinned boost=0 wait%=0.08,0.06 burst_max_ms=2.012,2.011 stacked=8,8 wakes=29505,29511 handoff_max_ms=1.940,1.003 waker_wait%=0.008
+## round 4 config default+siblings cpus 4-7,20-23 15:32:27 loadavg 3.18
+preflight: top_rank=unique(cpu6:231) smt_pairs_in_set=4 governor=performance minmax=pinned boost=0
+preflight: WARNING: the set contains 4 SMT sibling pair(s); the effect is much weaker with siblings allowed. Use one hardware thread per core.
+threads=2 burst_us=1000 gap_us=10 seconds=30 waker_cpu=2
+worker 0: wait 0.01% (run_ns 29621039991 wait_ns 2676740) bursts 29549 vcsw 29550 burst p50 1.002 p99 1.007 p99.9 1.019 max 1.463 ms handoff p50 0.003 p99 0.004 p99.9 0.005 max 0.891 ms stacked(>=0.5ms) 1 of 29548
+  published-start-CPU overlap 52 of 29549 bursts (0.18%); burst starts per CPU: 4:40 5:102 6:37 7:4792 20:1 21:31 22:13750 23:10796
+worker 1: wait 0.01% (run_ns 29620912727 wait_ns 2300111) bursts 29550 vcsw 29549 burst p50 1.002 p99 1.006 p99.9 1.016 max 1.149 ms handoff p50 0.003 p99 0.003 p99.9 0.006 max 0.359 ms stacked(>=0.5ms) 0 of 29549
+  published-start-CPU overlap 52 of 29550 bursts (0.18%); burst starts per CPU: 4:97 5:11 6:130 7:6035 20:47 21:8 22:15531 23:7691
+SUMMARY itmt=Y delay_dequeue=Y allowed_cpus=4,5,6,7,20,21,22,23 waker_cpu=2 seconds=30 top_rank=unique(cpu6:231) smt_pairs_in_set=4 governor=performance minmax=pinned boost=0 wait%=0.01,0.01 burst_max_ms=1.463,1.149 stacked=1,0 wakes=29548,29549 handoff_max_ms=0.891,0.359 waker_wait%=0.007
+## round 5 config default cpus 4-7 15:32:58 loadavg 3.11
+preflight: top_rank=unique(cpu6:231) smt_pairs_in_set=0 governor=performance minmax=pinned boost=0
+threads=2 burst_us=1000 gap_us=10 seconds=30 waker_cpu=2
+worker 0: wait 1.12% (run_ns 29295258850 wait_ns 330511319) bursts 29225 vcsw 29224 burst p50 1.002 p99 1.011 p99.9 1.803 max 2.017 ms handoff p50 0.003 p99 0.392 p99.9 0.997 max 1.002 ms stacked(>=0.5ms) 276 of 29224
+  published-start-CPU overlap 103 of 29225 bursts (0.35%); burst starts per CPU: 4:304 5:370 6:15369 7:13182
+worker 1: wait 1.11% (run_ns 29295083413 wait_ns 329455613) bursts 29227 vcsw 29226 burst p50 1.002 p99 1.009 p99.9 1.800 max 2.013 ms handoff p50 0.003 p99 0.393 p99.9 0.997 max 1.007 ms stacked(>=0.5ms) 283 of 29226
+  published-start-CPU overlap 114 of 29227 bursts (0.39%); burst starts per CPU: 4:472 5:314 6:13811 7:14630
+SUMMARY itmt=Y delay_dequeue=Y allowed_cpus=4,5,6,7 waker_cpu=2 seconds=30 top_rank=unique(cpu6:231) smt_pairs_in_set=0 governor=performance minmax=pinned boost=0 wait%=1.12,1.11 burst_max_ms=2.017,2.013 stacked=276,283 wakes=29224,29226 handoff_max_ms=1.002,1.007 waker_wait%=0.014
+## round 5 config itmt-off cpus 4-7 15:33:29 loadavg 2.90
+preflight: top_rank=unique(cpu6:231) smt_pairs_in_set=0 governor=performance minmax=pinned boost=0
+threads=2 burst_us=1000 gap_us=10 seconds=30 waker_cpu=2
+worker 0: wait 0.01% (run_ns 29622444668 wait_ns 1884560) bursts 29521 vcsw 29520 burst p50 1.003 p99 1.006 p99.9 1.013 max 1.240 ms handoff p50 0.003 p99 0.004 p99.9 0.006 max 0.907 ms stacked(>=0.5ms) 2 of 29520
+  published-start-CPU overlap 0 of 29521 bursts (0.00%); burst starts per CPU: 4:10550 5:18970 6:1
+worker 1: wait 0.00% (run_ns 29623148507 wait_ns 1268240) bursts 29523 vcsw 29522 burst p50 1.003 p99 1.008 p99.9 1.019 max 1.241 ms handoff p50 0.003 p99 0.004 p99.9 0.005 max 0.999 ms stacked(>=0.5ms) 1 of 29522
+  published-start-CPU overlap 0 of 29523 bursts (0.00%); burst starts per CPU: 6:3335 7:26188
+SUMMARY itmt=N delay_dequeue=Y allowed_cpus=4,5,6,7 waker_cpu=2 seconds=30 top_rank=unique(cpu6:231) smt_pairs_in_set=0 governor=performance minmax=pinned boost=0 wait%=0.01,0.00 burst_max_ms=1.240,1.241 stacked=2,1 wakes=29520,29522 handoff_max_ms=0.907,0.999 waker_wait%=0.016
+## round 5 config no-delay-dequeue cpus 4-7 15:34:00 loadavg 3.12
+preflight: top_rank=unique(cpu6:231) smt_pairs_in_set=0 governor=performance minmax=pinned boost=0
+threads=2 burst_us=1000 gap_us=10 seconds=30 waker_cpu=2
+worker 0: wait 0.11% (run_ns 29581844599 wait_ns 32110435) bursts 29476 vcsw 29475 burst p50 1.003 p99 1.012 p99.9 1.023 max 2.014 ms handoff p50 0.003 p99 0.005 p99.9 0.100 max 2.813 ms stacked(>=0.5ms) 20 of 29475
+  published-start-CPU overlap 141 of 29476 bursts (0.48%); burst starts per CPU: 4:380 5:1037 6:15345 7:12714
+worker 1: wait 0.11% (run_ns 29583017421 wait_ns 31148819) bursts 29478 vcsw 29477 burst p50 1.003 p99 1.012 p99.9 1.031 max 2.020 ms handoff p50 0.003 p99 0.005 p99.9 0.117 max 1.033 ms stacked(>=0.5ms) 14 of 29477
+  published-start-CPU overlap 134 of 29478 bursts (0.45%); burst starts per CPU: 4:487 5:829 6:12529 7:15633
+SUMMARY itmt=Y delay_dequeue=N allowed_cpus=4,5,6,7 waker_cpu=2 seconds=30 top_rank=unique(cpu6:231) smt_pairs_in_set=0 governor=performance minmax=pinned boost=0 wait%=0.11,0.11 burst_max_ms=2.014,2.020 stacked=20,14 wakes=29475,29477 handoff_max_ms=2.813,1.033 waker_wait%=0.018
+## round 5 config default+siblings cpus 4-7,20-23 15:34:31 loadavg 3.63
+preflight: top_rank=unique(cpu6:231) smt_pairs_in_set=4 governor=performance minmax=pinned boost=0
+preflight: WARNING: the set contains 4 SMT sibling pair(s); the effect is much weaker with siblings allowed. Use one hardware thread per core.
+threads=2 burst_us=1000 gap_us=10 seconds=30 waker_cpu=2
+worker 0: wait 0.03% (run_ns 29609398646 wait_ns 10109614) bursts 29536 vcsw 29535 burst p50 1.002 p99 1.010 p99.9 1.026 max 1.299 ms handoff p50 0.003 p99 0.004 p99.9 0.007 max 0.998 ms stacked(>=0.5ms) 7 of 29535
+  published-start-CPU overlap 47 of 29536 bursts (0.16%); burst starts per CPU: 4:144 5:168 6:837 7:4293 20:34 21:62 22:12254 23:11744
+worker 1: wait 0.02% (run_ns 29610110839 wait_ns 7299392) bursts 29539 vcsw 29538 burst p50 1.002 p99 1.009 p99.9 1.022 max 1.253 ms handoff p50 0.003 p99 0.004 p99.9 0.008 max 0.997 ms stacked(>=0.5ms) 6 of 29538
+  published-start-CPU overlap 47 of 29539 bursts (0.16%); burst starts per CPU: 4:157 5:176 6:438 7:4124 20:15 21:59 22:15889 23:8681
+SUMMARY itmt=Y delay_dequeue=Y allowed_cpus=4,5,6,7,20,21,22,23 waker_cpu=2 seconds=30 top_rank=unique(cpu6:231) smt_pairs_in_set=4 governor=performance minmax=pinned boost=0 wait%=0.03,0.02 burst_max_ms=1.299,1.253 stacked=7,6 wakes=29535,29538 handoff_max_ms=0.998,0.997 waker_wait%=0.024
+# end=2026-11-03T15:35:01+01:00
+# restored itmt=Y DELAY_DEQUEUE

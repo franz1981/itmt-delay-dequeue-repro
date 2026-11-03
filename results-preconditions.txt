@@ -1,0 +1,114 @@
+# preconditions.sh reps=3 secs=30 mhz=4300 2026-11-03T14:04:22+01:00 7.1.13-100.fc43.x86_64
+# initial: itmt=Y DELAY_DEQUEUE boost=0 cpu0=performance:4300000-4300000
+# ===== round 1
+## set unique-top 4-7 (top 6) | epp=performance
+published-start-CPU overlap 161 of 29351 bursts (0.55%); burst starts per CPU: 4:185 5:204 6:14913 7:14049
+published-start-CPU overlap 154 of 29360 bursts (0.52%); burst starts per CPU: 4:125 5:183 6:14268 7:14784
+SUMMARY itmt=Y delay_dequeue=Y allowed_cpus=4,5,6,7 waker_cpu=2 seconds=30 top_rank=unique(cpu6:231) smt_pairs_in_set=0 governor=performance minmax=pinned boost=0 wait%=0.60,0.57 burst_max_ms=2.432,2.228 stacked=146,131 wakes=29350,29359 handoff_max_ms=2.279,1.126 waker_wait%=0.020
+## set tied-top 1,3,5,7 (top 1,3) | epp=performance
+published-start-CPU overlap 1 of 29545 bursts (0.00%); burst starts per CPU: 1:18171 3:10890 5:146 7:338
+published-start-CPU overlap 2 of 29544 bursts (0.01%); burst starts per CPU: 1:10547 3:17995 5:90 7:912
+SUMMARY itmt=Y delay_dequeue=Y allowed_cpus=1,3,5,7 waker_cpu=2 seconds=30 top_rank=tied(cpu1:236) smt_pairs_in_set=0 governor=performance minmax=pinned boost=0 wait%=0.02,0.02 burst_max_ms=1.445,2.591 stacked=3,1 wakes=29544,29543 handoff_max_ms=1.782,1.479 waker_wait%=0.029
+## set tied-top 0-3 (top 1,3) | epp=performance
+published-start-CPU overlap 2 of 29509 bursts (0.01%); burst starts per CPU: 0:45 1:12051 2:132 3:17281
+published-start-CPU overlap 1 of 29507 bursts (0.00%); burst starts per CPU: 0:70 1:17165 2:355 3:11917
+SUMMARY itmt=Y delay_dequeue=Y allowed_cpus=0,1,2,3 waker_cpu=6 seconds=30 top_rank=tied(cpu1:236) smt_pairs_in_set=0 governor=performance minmax=pinned boost=0 wait%=0.03,0.04 burst_max_ms=1.312,1.821 stacked=6,5 wakes=29508,29506 handoff_max_ms=2.263,2.466 waker_wait%=0.001
+## set unique-top 0,2,5,7 (top 2) | epp=performance
+published-start-CPU overlap 2 of 29529 bursts (0.01%); burst starts per CPU: 0:1084 2:11270 5:6461 7:10714
+published-start-CPU overlap 3 of 29528 bursts (0.01%); burst starts per CPU: 0:333 2:17015 5:6128 7:6052
+SUMMARY itmt=Y delay_dequeue=Y allowed_cpus=0,2,5,7 waker_cpu=4 seconds=30 top_rank=unique(cpu2:226) smt_pairs_in_set=0 governor=performance minmax=pinned boost=0 wait%=0.00,0.01 burst_max_ms=1.024,2.532 stacked=0,0 wakes=29528,29527 handoff_max_ms=0.008,0.022 waker_wait%=0.020
+## set unique-top 8-11 (top 11) | epp=performance
+published-start-CPU overlap 3 of 29509 bursts (0.01%); burst starts per CPU: 8:297 9:12762 10:5540 11:10910
+published-start-CPU overlap 0 of 29520 bursts (0.00%); burst starts per CPU: 8:576 9:7549 10:3657 11:17738
+SUMMARY itmt=Y delay_dequeue=Y allowed_cpus=8,9,10,11 waker_cpu=12 seconds=30 top_rank=unique(cpu11:196) smt_pairs_in_set=0 governor=performance minmax=pinned boost=0 wait%=0.10,0.08 burst_max_ms=2.038,2.013 stacked=10,7 wakes=29508,29519 handoff_max_ms=1.350,1.474 waker_wait%=0.006
+## clocks performance+boost, range, 4-7 | epp=performance
+published-start-CPU overlap 52 of 29420 bursts (0.18%); burst starts per CPU: 4:271 5:149 6:13881 7:15119
+published-start-CPU overlap 57 of 29422 bursts (0.19%); burst starts per CPU: 4:106 5:259 6:15385 7:13672
+SUMMARY itmt=Y delay_dequeue=Y allowed_cpus=4,5,6,7 waker_cpu=2 seconds=30 top_rank=unique(cpu6:231) smt_pairs_in_set=0 governor=performance minmax=range boost=1 wait%=0.39,0.39 burst_max_ms=2.428,2.015 stacked=99,98 wakes=29419,29421 handoff_max_ms=1.000,1.002 waker_wait%=0.018
+## clocks powersave+boost+EPP balance_performance, range, 4-7 | epp=balance_performance
+published-start-CPU overlap 139 of 31539 bursts (0.44%); burst starts per CPU: 4:244 5:115 6:15558 7:15622
+published-start-CPU overlap 121 of 31530 bursts (0.38%); burst starts per CPU: 4:441 5:236 6:16076 7:14777
+SUMMARY itmt=Y delay_dequeue=Y allowed_cpus=4,5,6,7 waker_cpu=2 seconds=30 top_rank=unique(cpu6:231) smt_pairs_in_set=0 governor=powersave minmax=range boost=1 wait%=0.89,0.89 burst_max_ms=1.881,1.874 stacked=252,255 wakes=31538,31529 handoff_max_ms=0.931,1.125 waker_wait%=0.021
+## tied-top 1,3,5,7, ITMT off | epp=performance
+published-start-CPU overlap 0 of 29528 bursts (0.00%); burst starts per CPU: 1:8034 5:21494
+published-start-CPU overlap 0 of 29531 bursts (0.00%); burst starts per CPU: 3:3816 7:25715
+SUMMARY itmt=N delay_dequeue=Y allowed_cpus=1,3,5,7 waker_cpu=2 seconds=30 top_rank=tied(cpu1:236) smt_pairs_in_set=0 governor=performance minmax=pinned boost=0 wait%=0.00,0.00 burst_max_ms=1.026,1.023 stacked=0,0 wakes=29527,29530 handoff_max_ms=0.019,0.007 waker_wait%=0.032
+## tied-top 1,3,5,7, NO_DELAY_DEQUEUE | epp=performance
+published-start-CPU overlap 25 of 29470 bursts (0.08%); burst starts per CPU: 1:16415 3:12069 5:283 7:703
+published-start-CPU overlap 21 of 29474 bursts (0.07%); burst starts per CPU: 1:11744 3:16810 5:407 7:513
+SUMMARY itmt=Y delay_dequeue=N allowed_cpus=1,3,5,7 waker_cpu=2 seconds=30 top_rank=tied(cpu1:236) smt_pairs_in_set=0 governor=performance minmax=pinned boost=0 wait%=0.05,0.04 burst_max_ms=2.304,1.258 stacked=10,9 wakes=29469,29473 handoff_max_ms=1.709,1.929 waker_wait%=0.119
+# ===== round 2
+## set unique-top 4-7 (top 6) | epp=performance
+published-start-CPU overlap 30 of 29375 bursts (0.10%); burst starts per CPU: 4:133 5:192 6:17232 7:11818
+published-start-CPU overlap 40 of 29371 bursts (0.14%); burst starts per CPU: 4:102 5:144 6:12197 7:16928
+SUMMARY itmt=Y delay_dequeue=Y allowed_cpus=4,5,6,7 waker_cpu=2 seconds=30 top_rank=unique(cpu6:231) smt_pairs_in_set=0 governor=performance minmax=pinned boost=0 wait%=0.52,0.53 burst_max_ms=2.421,2.228 stacked=125,134 wakes=29374,29370 handoff_max_ms=1.876,2.822 waker_wait%=0.034
+## set tied-top 1,3,5,7 (top 1,3) | epp=performance
+published-start-CPU overlap 0 of 29503 bursts (0.00%); burst starts per CPU: 1:8188 3:21171 5:55 7:89
+published-start-CPU overlap 5 of 29502 bursts (0.02%); burst starts per CPU: 1:21189 3:7846 5:72 7:395
+SUMMARY itmt=Y delay_dequeue=Y allowed_cpus=1,3,5,7 waker_cpu=2 seconds=30 top_rank=tied(cpu1:236) smt_pairs_in_set=0 governor=performance minmax=pinned boost=0 wait%=0.06,0.07 burst_max_ms=1.918,2.344 stacked=13,15 wakes=29502,29501 handoff_max_ms=1.478,1.789 waker_wait%=0.021
+## set tied-top 0-3 (top 1,3) | epp=performance
+published-start-CPU overlap 0 of 29510 bursts (0.00%); burst starts per CPU: 0:117 1:13376 2:153 3:15864
+published-start-CPU overlap 0 of 29515 bursts (0.00%); burst starts per CPU: 0:29 1:15664 2:295 3:13527
+SUMMARY itmt=Y delay_dequeue=Y allowed_cpus=0,1,2,3 waker_cpu=6 seconds=30 top_rank=tied(cpu1:236) smt_pairs_in_set=0 governor=performance minmax=pinned boost=0 wait%=0.03,0.01 burst_max_ms=3.034,1.211 stacked=2,1 wakes=29509,29514 handoff_max_ms=1.838,0.712 waker_wait%=0.001
+## set unique-top 0,2,5,7 (top 2) | epp=performance
+published-start-CPU overlap 4 of 29530 bursts (0.01%); burst starts per CPU: 0:236 2:2495 5:17782 7:9017
+published-start-CPU overlap 7 of 29532 bursts (0.02%); burst starts per CPU: 0:207 2:14435 5:1387 7:13503
+SUMMARY itmt=Y delay_dequeue=Y allowed_cpus=0,2,5,7 waker_cpu=4 seconds=30 top_rank=unique(cpu2:226) smt_pairs_in_set=0 governor=performance minmax=pinned boost=0 wait%=0.00,0.00 burst_max_ms=1.033,1.030 stacked=0,0 wakes=29529,29531 handoff_max_ms=0.203,0.008 waker_wait%=0.017
+## set unique-top 8-11 (top 11) | epp=performance
+published-start-CPU overlap 0 of 29542 bursts (0.00%); burst starts per CPU: 8:345 9:6746 10:12228 11:10223
+published-start-CPU overlap 0 of 29541 bursts (0.00%); burst starts per CPU: 8:89 9:11135 10:9247 11:9070
+SUMMARY itmt=Y delay_dequeue=Y allowed_cpus=8,9,10,11 waker_cpu=12 seconds=30 top_rank=unique(cpu11:196) smt_pairs_in_set=0 governor=performance minmax=pinned boost=0 wait%=0.01,0.00 burst_max_ms=1.258,1.083 stacked=2,0 wakes=29541,29540 handoff_max_ms=0.975,0.234 waker_wait%=0.000
+## clocks performance+boost, range, 4-7 | epp=performance
+published-start-CPU overlap 94 of 29422 bursts (0.32%); burst starts per CPU: 4:318 5:80 6:15479 7:13545
+published-start-CPU overlap 93 of 29416 bursts (0.32%); burst starts per CPU: 4:111 5:385 6:13863 7:15057
+SUMMARY itmt=Y delay_dequeue=Y allowed_cpus=4,5,6,7 waker_cpu=2 seconds=30 top_rank=unique(cpu6:231) smt_pairs_in_set=0 governor=performance minmax=range boost=1 wait%=0.39,0.41 burst_max_ms=2.227,2.225 stacked=97,100 wakes=29421,29415 handoff_max_ms=1.004,1.003 waker_wait%=0.014
+## clocks powersave+boost+EPP balance_performance, range, 4-7 | epp=balance_performance
+published-start-CPU overlap 138 of 28388 bursts (0.49%); burst starts per CPU: 4:196 5:240 6:12810 7:15142
+published-start-CPU overlap 135 of 28389 bursts (0.48%); burst starts per CPU: 4:181 5:200 6:15571 7:12437
+SUMMARY itmt=Y delay_dequeue=Y allowed_cpus=4,5,6,7 waker_cpu=2 seconds=30 top_rank=unique(cpu6:231) smt_pairs_in_set=0 governor=powersave minmax=range boost=1 wait%=0.85,0.86 burst_max_ms=2.111,2.076 stacked=217,217 wakes=28387,28388 handoff_max_ms=1.036,1.038 waker_wait%=0.016
+## tied-top 1,3,5,7, ITMT off | epp=performance
+published-start-CPU overlap 0 of 29532 bursts (0.00%); burst starts per CPU: 3:29532
+published-start-CPU overlap 0 of 29532 bursts (0.00%); burst starts per CPU: 5:28713 7:819
+SUMMARY itmt=N delay_dequeue=Y allowed_cpus=1,3,5,7 waker_cpu=2 seconds=30 top_rank=tied(cpu1:236) smt_pairs_in_set=0 governor=performance minmax=pinned boost=0 wait%=0.00,0.00 burst_max_ms=1.030,1.016 stacked=0,0 wakes=29531,29531 handoff_max_ms=0.009,0.007 waker_wait%=0.018
+## tied-top 1,3,5,7, NO_DELAY_DEQUEUE | epp=performance
+published-start-CPU overlap 5 of 29518 bursts (0.02%); burst starts per CPU: 1:10997 3:17257 5:322 7:942
+published-start-CPU overlap 0 of 29530 bursts (0.00%); burst starts per CPU: 1:16870 3:11872 5:372 7:416
+SUMMARY itmt=Y delay_dequeue=N allowed_cpus=1,3,5,7 waker_cpu=2 seconds=30 top_rank=tied(cpu1:236) smt_pairs_in_set=0 governor=performance minmax=pinned boost=0 wait%=0.06,0.02 burst_max_ms=2.082,2.016 stacked=9,3 wakes=29517,29529 handoff_max_ms=1.984,1.733 waker_wait%=0.017
+# ===== round 3
+## set unique-top 4-7 (top 6) | epp=performance
+published-start-CPU overlap 83 of 29326 bursts (0.28%); burst starts per CPU: 4:227 5:362 6:14797 7:13940
+published-start-CPU overlap 96 of 29324 bursts (0.33%); burst starts per CPU: 4:117 5:67 6:14289 7:14851
+SUMMARY itmt=Y delay_dequeue=Y allowed_cpus=4,5,6,7 waker_cpu=2 seconds=30 top_rank=unique(cpu6:231) smt_pairs_in_set=0 governor=performance minmax=pinned boost=0 wait%=0.67,0.68 burst_max_ms=2.019,2.044 stacked=161,162 wakes=29325,29323 handoff_max_ms=1.951,1.817 waker_wait%=0.021
+## set tied-top 1,3,5,7 (top 1,3) | epp=performance
+published-start-CPU overlap 2 of 29512 bursts (0.01%); burst starts per CPU: 1:20970 3:8094 5:124 7:324
+published-start-CPU overlap 1 of 29511 bursts (0.00%); burst starts per CPU: 1:7958 3:20962 5:83 7:508
+SUMMARY itmt=Y delay_dequeue=Y allowed_cpus=1,3,5,7 waker_cpu=2 seconds=30 top_rank=tied(cpu1:236) smt_pairs_in_set=0 governor=performance minmax=pinned boost=0 wait%=0.02,0.02 burst_max_ms=1.671,1.352 stacked=1,3 wakes=29511,29510 handoff_max_ms=0.588,0.804 waker_wait%=0.015
+## set tied-top 0-3 (top 1,3) | epp=performance
+published-start-CPU overlap 27 of 29370 bursts (0.09%); burst starts per CPU: 0:828 1:15126 2:2598 3:10818
+published-start-CPU overlap 37 of 29393 bursts (0.13%); burst starts per CPU: 0:793 1:11515 2:1564 3:15521
+SUMMARY itmt=Y delay_dequeue=Y allowed_cpus=0,1,2,3 waker_cpu=6 seconds=30 top_rank=tied(cpu1:236) smt_pairs_in_set=0 governor=performance minmax=pinned boost=0 wait%=0.44,0.37 burst_max_ms=3.835,2.509 stacked=88,81 wakes=29369,29392 handoff_max_ms=2.692,2.671 waker_wait%=0.007
+## set unique-top 0,2,5,7 (top 2) | epp=performance
+published-start-CPU overlap 3 of 29520 bursts (0.01%); burst starts per CPU: 0:327 2:16805 5:1848 7:10540
+published-start-CPU overlap 4 of 29513 bursts (0.01%); burst starts per CPU: 0:235 2:6630 5:10359 7:12289
+SUMMARY itmt=Y delay_dequeue=Y allowed_cpus=0,2,5,7 waker_cpu=4 seconds=30 top_rank=unique(cpu2:226) smt_pairs_in_set=0 governor=performance minmax=pinned boost=0 wait%=0.02,0.03 burst_max_ms=1.812,1.809 stacked=5,7 wakes=29519,29512 handoff_max_ms=0.998,1.850 waker_wait%=0.033
+## set unique-top 8-11 (top 11) | epp=performance
+published-start-CPU overlap 22 of 29736 bursts (0.07%); burst starts per CPU: 8:453 9:7261 10:8387 11:13635
+published-start-CPU overlap 28 of 29735 bursts (0.09%); burst starts per CPU: 8:234 9:13317 10:3342 11:12842
+SUMMARY itmt=Y delay_dequeue=Y allowed_cpus=8,9,10,11 waker_cpu=12 seconds=30 top_rank=unique(cpu11:196) smt_pairs_in_set=0 governor=performance minmax=pinned boost=0 wait%=0.09,0.09 burst_max_ms=1.997,2.013 stacked=19,23 wakes=29735,29734 handoff_max_ms=0.993,1.208 waker_wait%=0.007
+## clocks performance+boost, range, 4-7 | epp=performance
+published-start-CPU overlap 108 of 29380 bursts (0.37%); burst starts per CPU: 4:252 5:409 6:13106 7:15613
+published-start-CPU overlap 107 of 29385 bursts (0.36%); burst starts per CPU: 4:305 5:222 6:15848 7:13010
+SUMMARY itmt=Y delay_dequeue=Y allowed_cpus=4,5,6,7 waker_cpu=2 seconds=30 top_rank=unique(cpu6:231) smt_pairs_in_set=0 governor=performance minmax=range boost=1 wait%=0.55,0.54 burst_max_ms=2.013,2.019 stacked=139,137 wakes=29379,29384 handoff_max_ms=1.048,1.000 waker_wait%=0.028
+## clocks powersave+boost+EPP balance_performance, range, 4-7 | epp=balance_performance
+published-start-CPU overlap 356 of 28385 bursts (1.25%); burst starts per CPU: 4:274 5:167 6:15475 7:12469
+published-start-CPU overlap 367 of 28387 bursts (1.29%); burst starts per CPU: 4:250 5:311 6:12675 7:15151
+SUMMARY itmt=Y delay_dequeue=Y allowed_cpus=4,5,6,7 waker_cpu=2 seconds=30 top_rank=unique(cpu6:231) smt_pairs_in_set=0 governor=powersave minmax=range boost=1 wait%=0.80,0.79 burst_max_ms=2.394,2.205 stacked=207,196 wakes=28384,28386 handoff_max_ms=1.035,1.038 waker_wait%=0.023
+## tied-top 1,3,5,7, ITMT off | epp=performance
+published-start-CPU overlap 0 of 29521 bursts (0.00%); burst starts per CPU: 1:10352 5:18068 7:1101
+published-start-CPU overlap 0 of 29524 bursts (0.00%); burst starts per CPU: 3:12075 5:3965 7:13484
+SUMMARY itmt=N delay_dequeue=Y allowed_cpus=1,3,5,7 waker_cpu=2 seconds=30 top_rank=tied(cpu1:236) smt_pairs_in_set=0 governor=performance minmax=pinned boost=0 wait%=0.01,0.00 burst_max_ms=1.043,1.035 stacked=0,0 wakes=29520,29523 handoff_max_ms=0.008,0.051 waker_wait%=0.030
+## tied-top 1,3,5,7, NO_DELAY_DEQUEUE | epp=performance
+published-start-CPU overlap 5 of 29537 bursts (0.02%); burst starts per CPU: 1:14005 3:14414 5:347 7:771
+published-start-CPU overlap 4 of 29526 bursts (0.01%); burst starts per CPU: 1:14504 3:14118 5:393 7:511
+SUMMARY itmt=Y delay_dequeue=N allowed_cpus=1,3,5,7 waker_cpu=2 seconds=30 top_rank=tied(cpu1:236) smt_pairs_in_set=0 governor=performance minmax=pinned boost=0 wait%=0.05,0.09 burst_max_ms=1.352,2.007 stacked=5,11 wakes=29536,29525 handoff_max_ms=2.232,2.600 waker_wait%=0.021
+# restored itmt=Y DELAY_DEQUEUE boost=0 cpu0=performance:4300000-4300000

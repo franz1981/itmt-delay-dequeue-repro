@@ -1,0 +1,48 @@
+// sudo bpftrace stackcheck.bt -c "taskset -c 4-7 ./asym_stack2 2 1000 10 10 2"
+// (-c: probes are attached before the program starts, and tracing ends when it exits.)
+//
+// Per asym-worker wakeup, from sched_waking (start of try_to_wake_up) to the worker's switch-in:
+//   @wakeups[delayed, cpu_selected]: delayed = se.sched_delayed at try_to_wake_up entry (DELAY_DEQUEUE kept it
+//     queued); cpu_selected = select_task_rq_fair() ran for this wakeup. All wakeups, the base rate.
+// For waits >= 0.5 ms (the program's "stacked"):
+//   @long_waits[cpu, prev]: CPU it waited on, and what that CPU ran just before ("other worker" or a comm).
+//   @long_waits_wakeup[delayed, cpu_selected]: the same two flags for the waiting worker's wakeup.
+//   @long_waits_other_arrived[how]: when prev is the other worker, how it got onto this CPU since its own last
+//     wakeup: by its wakeup (with its delayed/cpu_selected flags), or migrated here before / after the waiter's
+//     sched_waking; @long_waits_other_move_stack: kernel stacks of those migrations.
+fentry:vmlinux:try_to_wake_up /args.p->comm == "asym-worker"/ {
+  @delayed[args.p->pid] = (uint64)args.p->se.sched_delayed;
+  @selected[args.p->pid] = 0;
+}
+fentry:vmlinux:select_task_rq_fair /args.p->comm == "asym-worker"/ { @selected[args.p->pid] = 1; }
+tracepoint:sched:sched_waking /args.comm == "asym-worker"/ { @waking_at[args.pid] = nsecs; @worker[args.pid] = 1; }
+tracepoint:sched:sched_migrate_task /@worker[args.pid]/ {
+  @mig_at[args.pid] = nsecs; @mig_dest[args.pid] = (uint64)args.dest_cpu; @mig_stack[args.pid] = kstack(8);
+}
+tracepoint:sched:sched_switch /args.next_comm == "asym-worker" && @waking_at[args.next_pid]/ {
+  $n = args.next_pid; $k = @waking_at[$n]; $d = @delayed[$n]; $s = @selected[$n];
+  @wakeups[$d, $s] = count();
+  if (nsecs - $k >= 500000) {
+    @long_waits_total = count();
+    @long_waits_wakeup[$d, $s] = count();
+    if (args.prev_comm == "asym-worker") {
+      @long_waits[cpu, "other worker"] = count();
+      $o = args.prev_pid;
+      if (@mig_dest[$o] == cpu && @mig_at[$o] > @last_waking[$o]) {
+        if (@mig_at[$o] < $k) { @long_waits_other_arrived["migrated here before the waiter's waking"] = count(); }
+        else { @long_waits_other_arrived["migrated here after the waiter's waking"] = count(); }
+        @long_waits_other_move_stack[@mig_stack[$o]] = count();
+      } else {
+        @long_waits_other_arrived_by_wakeup[@last_delayed[$o], @last_selected[$o]] = count();
+      }
+    } else {
+      @long_waits[cpu, args.prev_comm] = count();
+    }
+  }
+  @last_waking[$n] = $k; @last_delayed[$n] = $d; @last_selected[$n] = $s;
+  delete(@waking_at[$n]);
+}
+END {
+  clear(@delayed); clear(@selected); clear(@waking_at); clear(@worker); clear(@mig_at); clear(@mig_dest);
+  clear(@mig_stack); clear(@last_waking); clear(@last_delayed); clear(@last_selected);
+}

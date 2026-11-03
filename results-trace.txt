@@ -1,0 +1,107 @@
+# sudo bpftrace stackcheck.bt -c "taskset -c 4-7 ./asym_stack2 2 1000 10 <seconds> 2"   (2026-10-31)
+# map keys [delayed, cpu_selected]: see the header of stackcheck.bt
+## default run 1
+SUMMARY itmt=Y delay_dequeue=Y allowed_cpus=4,5,6,7 waker_cpu=2 seconds=10 wait%=0.48,0.49 burst_max_ms=2.013,2.018 stacked=37,43 wakes=9781,9780 handoff_max_ms=1.008,1.006 waker_wait%=0.009
+@long_waits[7, swapper/7]: 2
+@long_waits[4, swapper/4]: 2
+@long_waits[6, other worker]: 76
+@long_waits_other_arrived[migrated here before the waiter's waking]: 5
+@long_waits_other_arrived_by_wakeup[0, 1]: 10
+@long_waits_other_arrived_by_wakeup[1, 0]: 61
+@long_waits_other_move_stack[
+        perf_trace_sched_migrate_task+16
+        set_task_cpu+316
+        active_load_balance_cpu_stop+691
+        cpu_stopper_thread+163
+        smpboot_thread_fn+243
+        kthread+227
+        ret_from_fork+417
+        ret_from_fork_asm+26
+]: 5
+@long_waits_total: 80
+@long_waits_wakeup[0, 1]: 5
+@long_waits_wakeup[1, 0]: 75
+@wakeups[1, 0]: 90
+@wakeups[0, 1]: 19472
+## default run 2
+SUMMARY itmt=Y delay_dequeue=Y allowed_cpus=4,5,6,7 waker_cpu=2 seconds=10 wait%=0.03,0.03 burst_max_ms=1.029,2.017 stacked=3,1 wakes=9825,9825 handoff_max_ms=1.012,1.005 waker_wait%=0.018
+@long_waits[6, other worker]: 4
+@long_waits_other_arrived[migrated here after the waiter's waking]: 1
+@long_waits_other_arrived_by_wakeup[1, 0]: 1
+@long_waits_other_arrived_by_wakeup[0, 1]: 2
+@long_waits_other_move_stack[
+        perf_trace_sched_migrate_task+16
+        set_task_cpu+316
+        active_load_balance_cpu_stop+691
+        cpu_stopper_thread+163
+        smpboot_thread_fn+243
+        kthread+227
+        ret_from_fork+417
+        ret_from_fork_asm+26
+]: 1
+@long_waits_total: 4
+@long_waits_wakeup[0, 1]: 1
+@long_waits_wakeup[1, 0]: 3
+@wakeups[1, 0]: 5
+@wakeups[0, 1]: 19646
+## default run 3
+SUMMARY itmt=Y delay_dequeue=Y allowed_cpus=4,5,6,7 waker_cpu=2 seconds=10 wait%=0.31,0.30 burst_max_ms=2.013,2.012 stacked=26,25 wakes=9797,9798 handoff_max_ms=1.007,1.004 waker_wait%=0.018
+@long_waits[7, migration/7]: 1
+@long_waits[4, swapper/4]: 2
+@long_waits[7, swapper/7]: 3
+@long_waits[6, other worker]: 45
+@long_waits_other_arrived[migrated here before the waiter's waking]: 5
+@long_waits_other_arrived_by_wakeup[0, 1]: 7
+@long_waits_other_arrived_by_wakeup[1, 0]: 33
+@long_waits_other_move_stack[
+        perf_trace_sched_migrate_task+16
+        set_task_cpu+316
+        active_load_balance_cpu_stop+691
+        cpu_stopper_thread+163
+        smpboot_thread_fn+243
+        kthread+227
+        ret_from_fork+417
+        ret_from_fork_asm+26
+]: 5
+@long_waits_total: 51
+@long_waits_wakeup[0, 1]: 7
+@long_waits_wakeup[1, 0]: 44
+@wakeups[0, 0]: 1
+@wakeups[1, 0]: 53
+@wakeups[0, 1]: 19542
+## NO_DELAY_DEQUEUE run 1 (20 s)
+SUMMARY itmt=Y delay_dequeue=N allowed_cpus=4,5,6,7 waker_cpu=2 seconds=20 wait%=0.01,0.00 burst_max_ms=1.023,1.029 stacked=1,0 wakes=19653,19654 handoff_max_ms=1.008,0.040 waker_wait%=0.031
+@long_waits[7, swapper/7]: 1
+@long_waits_total: 1
+@long_waits_wakeup[0, 1]: 1
+@wakeups[0, 0]: 1
+@wakeups[0, 1]: 39308
+## NO_DELAY_DEQUEUE run 2 (20 s)
+SUMMARY itmt=Y delay_dequeue=N allowed_cpus=4,5,6,7 waker_cpu=2 seconds=20 wait%=0.01,0.02 burst_max_ms=1.037,1.043 stacked=1,4 wakes=19655,19652 handoff_max_ms=1.017,1.013 waker_wait%=0.018
+@long_waits[6, other worker]: 5
+@long_waits_other_arrived[migrated here before the waiter's waking]: 5
+@long_waits_other_move_stack[
+        perf_trace_sched_migrate_task+16
+        set_task_cpu+316
+        detach_tasks+271
+        sched_balance_rq+433
+        sched_balance_newidle+768
+        pick_next_task_fair+83
+        pick_next_task+96
+        __schedule+369
+]: 1
+@long_waits_other_move_stack[
+        perf_trace_sched_migrate_task+16
+        set_task_cpu+316
+        active_load_balance_cpu_stop+691
+        cpu_stopper_thread+163
+        smpboot_thread_fn+243
+        kthread+227
+        ret_from_fork+417
+        ret_from_fork_asm+26
+]: 4
+@long_waits_total: 5
+@long_waits_wakeup[0, 0]: 1
+@long_waits_wakeup[0, 1]: 4
+@wakeups[0, 0]: 1
+@wakeups[0, 1]: 39306

@@ -1,0 +1,11 @@
+# sudo bpftrace stackcheck-idle.bt -c "taskset -c 4-7 ./asym_min 1000 10 30 2", defaults, 2026-11-03T16:19:43+01:00
+SUMMARY itmt=Y delay_dequeue=Y allowed_cpus=4,5,6,7 waker_cpu=2 seconds=30 stacked=49,53 wakes=29416,29417 handoff_p50_ms=0.005,0.005 handoff_p99_ms=0.006,0.005 handoff_p999_ms=0.999,0.999 handoff_max_ms=1.010,1.009 waker_wait%=0.017
+@idle_cpus_at_waking_all[1]: 1
+@idle_cpus_at_waking_all[2]: 121
+@idle_cpus_at_waking_all[3]: 21528
+@idle_cpus_at_waking_all[4]: 37182
+@idle_cpus_at_waking_long[3]: 102
+@long_waits[6, other worker]: 93
+@long_waits_total: 102
+@long_waits_wakeup[0, 1]: 14
+@long_waits_wakeup[1, 0]: 88

@@ -1,0 +1,58 @@
+# final.sh prog=asym_min reps=5 secs=30 cpus=4-7 siblings=20-23 waker=2 start=2026-11-03T16:09:17+01:00
+# uname: 7.1.13-100.fc43.x86_64  tainted: 0  cmdline: BOOT_IMAGE=(hd1,gpt5)/vmlinuz-7.1.13-100.fc43.x86_64 root=UUID=<redacted> ro ro rhgb quiet hpet=disable clocksource=tsc tsc=reliable amdgpu.gfxoff=0
+# model name	: AMD Ryzen 9 7950X 16-Core Processor
+# itmt=Y features: PLACE_LAG PLACE_DEADLINE_INITIAL PLACE_REL_DEADLINE RUN_TO_PARITY PREEMPT_SHORT NO_NEXT_BUDDY PICK_BUDDY CACHE_HOT_BUDDY DELAY_DEQUEUE DELAY_ZERO NO_PARANOID_AVG WAKEUP_PREEMPTION HRTICK HRTICK_DL NONTASK_CAPACITY TTWU_QUEUE SIS_UTIL NO_WARN_DOUBLE_CLOCK NO_RT_PUSH_IPI NO_RT_RUNTIME_SHARE NO_LB_MIN ATTACH_AGE_LOAD WA_IDLE WA_WEIGHT WA_BIAS UTIL_EST NO_LATENCY_WARN NI_RANDOM NI_RATE 
+# boost=0 amd_pstate=active
+# cpu:governor:min-max:rank  0:performance:4300000-4300000:206 1:performance:4300000-4300000:236 2:performance:4300000-4300000:226 3:performance:4300000-4300000:236 4:performance:4300000-4300000:211 5:performance:4300000-4300000:216 6:performance:4300000-4300000:231 7:performance:4300000-4300000:221 8:performance:4300000-4300000:171 9:performance:4300000-4300000:191 10:performance:4300000-4300000:186 11:performance:4300000-4300000:196 12:performance:4300000-4300000:181 13:performance:4300000-4300000:166 14:performance:4300000-4300000:176 15:performance:4300000-4300000:201 16:performance:4300000-4300000:206 17:performance:4300000-4300000:236 18:performance:4300000-4300000:226 19:performance:4300000-4300000:236 20:performance:4300000-4300000:211 21:performance:4300000-4300000:216 22:performance:4300000-4300000:231 23:performance:4300000-4300000:221 24:performance:4300000-4300000:171 25:performance:4300000-4300000:191 26:performance:4300000-4300000:186 27:performance:4300000-4300000:196 28:performance:4300000-4300000:181 29:performance:4300000-4300000:166 30:performance:4300000-4300000:176 31:performance:4300000-4300000:201 
+# base_slice_ns=2800000 HZ=1000 preempt=full (lazy) 
+# loadavg: 1.30 0.64 0.65 1/1576 1856071
+# busiest processes at start:
+#    1.9 gnome-terminal-
+#    1.6 claude
+#    1.4 gnome-shell
+#    1.2 claude
+#    1.0 localsearch-ext
+#    0.2 claude
+#    0.2 slack
+## round 1 config default cpus 4-7 16:09:18 loadavg 1.30
+SUMMARY itmt=Y delay_dequeue=Y allowed_cpus=4,5,6,7 waker_cpu=2 seconds=30 stacked=102,110 wakes=29391,29389 handoff_p50_ms=0.003,0.003 handoff_p99_ms=0.004,0.004 handoff_p999_ms=0.997,0.998 handoff_max_ms=1.977,3.805 waker_wait%=0.025
+## round 1 config itmt-off cpus 4-7 16:09:49 loadavg 2.03
+SUMMARY itmt=N delay_dequeue=Y allowed_cpus=4,5,6,7 waker_cpu=2 seconds=30 stacked=1,0 wakes=29521,29532 handoff_p50_ms=0.003,0.003 handoff_p99_ms=0.003,0.003 handoff_p999_ms=0.007,0.005 handoff_max_ms=2.816,0.022 waker_wait%=0.020
+## round 1 config no-delay-dequeue cpus 4-7 16:10:20 loadavg 2.36
+SUMMARY itmt=Y delay_dequeue=N allowed_cpus=4,5,6,7 waker_cpu=2 seconds=30 stacked=11,10 wakes=29516,29517 handoff_p50_ms=0.003,0.003 handoff_p99_ms=0.003,0.003 handoff_p999_ms=0.005,0.006 handoff_max_ms=1.023,1.024 waker_wait%=0.009
+## round 1 config default+siblings cpus 4-7,20-23 16:10:51 loadavg 2.62
+SUMMARY itmt=Y delay_dequeue=Y allowed_cpus=4,5,6,7,20,21,22,23 waker_cpu=2 seconds=30 stacked=9,7 wakes=29512,29518 handoff_p50_ms=0.003,0.003 handoff_p99_ms=0.003,0.003 handoff_p999_ms=0.005,0.005 handoff_max_ms=2.737,2.985 waker_wait%=0.018
+## round 2 config default cpus 4-7 16:11:22 loadavg 2.84
+SUMMARY itmt=Y delay_dequeue=Y allowed_cpus=4,5,6,7 waker_cpu=2 seconds=30 stacked=22,27 wakes=29505,29504 handoff_p50_ms=0.003,0.003 handoff_p99_ms=0.003,0.003 handoff_p999_ms=0.013,0.024 handoff_max_ms=1.001,0.999 waker_wait%=0.019
+## round 2 config itmt-off cpus 4-7 16:11:53 loadavg 2.96
+SUMMARY itmt=N delay_dequeue=Y allowed_cpus=4,5,6,7 waker_cpu=2 seconds=30 stacked=0,0 wakes=29542,29542 handoff_p50_ms=0.003,0.003 handoff_p99_ms=0.003,0.003 handoff_p999_ms=0.004,0.004 handoff_max_ms=0.006,0.006 waker_wait%=0.008
+## round 2 config no-delay-dequeue cpus 4-7 16:12:24 loadavg 2.83
+SUMMARY itmt=Y delay_dequeue=N allowed_cpus=4,5,6,7 waker_cpu=2 seconds=30 stacked=6,3 wakes=29526,29520 handoff_p50_ms=0.003,0.003 handoff_p99_ms=0.003,0.003 handoff_p999_ms=0.005,0.005 handoff_max_ms=1.008,1.005 waker_wait%=0.007
+## round 2 config default+siblings cpus 4-7,20-23 16:12:55 loadavg 2.90
+SUMMARY itmt=Y delay_dequeue=Y allowed_cpus=4,5,6,7,20,21,22,23 waker_cpu=2 seconds=30 stacked=14,13 wakes=29516,29517 handoff_p50_ms=0.003,0.003 handoff_p99_ms=0.003,0.003 handoff_p999_ms=0.005,0.005 handoff_max_ms=0.998,0.999 waker_wait%=0.007
+## round 3 config default cpus 4-7 16:13:26 loadavg 2.94
+SUMMARY itmt=Y delay_dequeue=Y allowed_cpus=4,5,6,7 waker_cpu=2 seconds=30 stacked=25,23 wakes=29505,29509 handoff_p50_ms=0.003,0.003 handoff_p99_ms=0.003,0.003 handoff_p999_ms=0.012,0.010 handoff_max_ms=1.000,0.999 waker_wait%=0.017
+## round 3 config itmt-off cpus 4-7 16:13:57 loadavg 2.96
+SUMMARY itmt=N delay_dequeue=Y allowed_cpus=4,5,6,7 waker_cpu=2 seconds=30 stacked=0,0 wakes=29534,29534 handoff_p50_ms=0.003,0.003 handoff_p99_ms=0.003,0.003 handoff_p999_ms=0.004,0.004 handoff_max_ms=0.005,0.006 waker_wait%=0.026
+## round 3 config no-delay-dequeue cpus 4-7 16:14:28 loadavg 2.98
+SUMMARY itmt=Y delay_dequeue=N allowed_cpus=4,5,6,7 waker_cpu=2 seconds=30 stacked=8,3 wakes=29524,29524 handoff_p50_ms=0.003,0.003 handoff_p99_ms=0.003,0.003 handoff_p999_ms=0.005,0.004 handoff_max_ms=0.993,1.000 waker_wait%=0.017
+## round 3 config default+siblings cpus 4-7,20-23 16:14:59 loadavg 2.75
+SUMMARY itmt=Y delay_dequeue=Y allowed_cpus=4,5,6,7,20,21,22,23 waker_cpu=2 seconds=30 stacked=6,9 wakes=29526,29521 handoff_p50_ms=0.003,0.003 handoff_p99_ms=0.003,0.003 handoff_p999_ms=0.005,0.005 handoff_max_ms=0.999,0.999 waker_wait%=0.016
+## round 4 config default cpus 4-7 16:15:30 loadavg 2.78
+SUMMARY itmt=Y delay_dequeue=Y allowed_cpus=4,5,6,7 waker_cpu=2 seconds=30 stacked=34,42 wakes=29495,29496 handoff_p50_ms=0.003,0.003 handoff_p99_ms=0.003,0.003 handoff_p999_ms=0.977,0.978 handoff_max_ms=1.008,1.008 waker_wait%=0.017
+## round 4 config itmt-off cpus 4-7 16:16:01 loadavg 2.87
+SUMMARY itmt=N delay_dequeue=Y allowed_cpus=4,5,6,7 waker_cpu=2 seconds=30 stacked=0,0 wakes=29536,29536 handoff_p50_ms=0.003,0.003 handoff_p99_ms=0.003,0.003 handoff_p999_ms=0.004,0.005 handoff_max_ms=0.007,0.010 waker_wait%=0.027
+## round 4 config no-delay-dequeue cpus 4-7 16:16:32 loadavg 2.92
+SUMMARY itmt=Y delay_dequeue=N allowed_cpus=4,5,6,7 waker_cpu=2 seconds=30 stacked=16,10 wakes=29513,29517 handoff_p50_ms=0.003,0.003 handoff_p99_ms=0.003,0.003 handoff_p999_ms=0.010,0.005 handoff_max_ms=1.007,1.006 waker_wait%=0.017
+## round 4 config default+siblings cpus 4-7,20-23 16:17:03 loadavg 2.95
+SUMMARY itmt=Y delay_dequeue=Y allowed_cpus=4,5,6,7,20,21,22,23 waker_cpu=2 seconds=30 stacked=6,7 wakes=29523,29524 handoff_p50_ms=0.003,0.003 handoff_p99_ms=0.003,0.003 handoff_p999_ms=0.005,0.005 handoff_max_ms=0.999,1.001 waker_wait%=0.015
+## round 5 config default cpus 4-7 16:17:34 loadavg 2.66
+SUMMARY itmt=Y delay_dequeue=Y allowed_cpus=4,5,6,7 waker_cpu=2 seconds=30 stacked=113,101 wakes=29411,29411 handoff_p50_ms=0.003,0.003 handoff_p99_ms=0.004,0.004 handoff_p999_ms=0.997,0.997 handoff_max_ms=1.005,0.999 waker_wait%=0.018
+## round 5 config itmt-off cpus 4-7 16:18:05 loadavg 2.80
+SUMMARY itmt=N delay_dequeue=Y allowed_cpus=4,5,6,7 waker_cpu=2 seconds=30 stacked=0,0 wakes=29539,29533 handoff_p50_ms=0.003,0.003 handoff_p99_ms=0.003,0.003 handoff_p999_ms=0.004,0.005 handoff_max_ms=0.006,0.010 waker_wait%=0.027
+## round 5 config no-delay-dequeue cpus 4-7 16:18:36 loadavg 2.80
+SUMMARY itmt=Y delay_dequeue=N allowed_cpus=4,5,6,7 waker_cpu=2 seconds=30 stacked=6,8 wakes=29523,29521 handoff_p50_ms=0.003,0.003 handoff_p99_ms=0.003,0.003 handoff_p999_ms=0.005,0.005 handoff_max_ms=0.998,1.003 waker_wait%=0.015
+## round 5 config default+siblings cpus 4-7,20-23 16:19:07 loadavg 2.88
+SUMMARY itmt=Y delay_dequeue=Y allowed_cpus=4,5,6,7,20,21,22,23 waker_cpu=2 seconds=30 stacked=0,2 wakes=29530,29528 handoff_p50_ms=0.003,0.003 handoff_p99_ms=0.003,0.003 handoff_p999_ms=0.005,0.005 handoff_max_ms=0.029,0.977 waker_wait%=0.026
+# end=2026-11-03T16:19:37+01:00
+# restored itmt=Y DELAY_DEQUEUE

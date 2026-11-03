@@ -1,0 +1,60 @@
+# sudo bpftrace stackcheck.bt -c "taskset -c 1,3,5,7 ./asym_stack2 2 1000 10 30 2", 2 runs (2026-11-03, tied-top set; map keys [delayed, cpu_selected]: see stackcheck.bt)
+## tied-top 1,3,5,7 trace run 1
+Attached 6 probes
+SUMMARY itmt=Y delay_dequeue=Y allowed_cpus=1,3,5,7 waker_cpu=2 seconds=30 top_rank=tied(cpu1:236) smt_pairs_in_set=0 governor=performance minmax=pinned boost=0 wait%=0.07,0.08 burst_max_ms=1.808,3.548 stacked=15,14 wakes=29451,29448 handoff_max_ms=1.724,2.817 waker_wait%=0.012
+@long_waits[5, kworker/u129:3]: 1
+@long_waits[3, mi-scavenger]: 1
+@long_waits[3, kworker/3:1]: 1
+@long_waits[1, mt76-tx phy0]: 1
+@long_waits[3, systemd]: 1
+@long_waits[5, swapper/5]: 1
+@long_waits[7, swapper/7]: 3
+@long_waits[1, other worker]: 6
+@long_waits[3, other worker]: 14
+@long_waits_other_arrived[migrated here before the waiter's waking]: 2
+@long_waits_other_arrived_by_wakeup[0, 1]: 6
+@long_waits_other_arrived_by_wakeup[1, 0]: 12
+@long_waits_other_move_stack[
+        perf_trace_sched_migrate_task+16
+        set_task_cpu+316
+        active_load_balance_cpu_stop+691
+        cpu_stopper_thread+163
+        smpboot_thread_fn+243
+        kthread+227
+        ret_from_fork+417
+        ret_from_fork_asm+26
+]: 2
+@long_waits_total: 29
+@long_waits_wakeup[0, 1]: 6
+@long_waits_wakeup[1, 0]: 23
+@wakeups[0, 0]: 3
+@wakeups[1, 0]: 26
+@wakeups[0, 1]: 58871
+## tied-top 1,3,5,7 trace run 2
+Attached 6 probes
+SUMMARY itmt=Y delay_dequeue=Y allowed_cpus=1,3,5,7 waker_cpu=2 seconds=30 top_rank=tied(cpu1:236) smt_pairs_in_set=0 governor=performance minmax=pinned boost=0 wait%=0.04,0.04 burst_max_ms=2.011,2.011 stacked=5,8 wakes=29459,29461 handoff_max_ms=1.024,1.008 waker_wait%=0.008
+@long_waits[1, codex-main]: 1
+@long_waits[5, kworker/5:0]: 1
+@long_waits[5, 2.1.317]: 1
+@long_waits[3, other worker]: 10
+@long_waits_other_arrived[migrated here before the waiter's waking]: 1
+@long_waits_other_arrived_by_wakeup[0, 0]: 1
+@long_waits_other_arrived_by_wakeup[0, 1]: 3
+@long_waits_other_arrived_by_wakeup[1, 0]: 5
+@long_waits_other_move_stack[
+        perf_trace_sched_migrate_task+16
+        set_task_cpu+316
+        detach_tasks+271
+        sched_balance_rq+433
+        sched_balance_newidle+768
+        pick_next_task_fair+83
+        pick_next_task+96
+        __schedule+369
+]: 1
+@long_waits_total: 13
+@long_waits_wakeup[0, 0]: 1
+@long_waits_wakeup[0, 1]: 2
+@long_waits_wakeup[1, 0]: 10
+@wakeups[0, 0]: 3
+@wakeups[1, 0]: 14
+@wakeups[0, 1]: 58905
