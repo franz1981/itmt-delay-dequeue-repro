@@ -1,0 +1,62 @@
+# free clocks: boost=1 min=425292 max=5883197 
+# clock sampler: off (set FREQ_SAMPLE=1 for a probed run)
+# probe-tbench.sh reps=8 secs=30 clients=1 cpus=4-7 start=2026-11-04T12:22:19+01:00 7.1.13-100.fc43.x86_64 itmt=Y DELAY_DEQUEUE boost=1 min=425292 max=5883197 tsc_mhz=4500
+## round 1 tbench clients=1 cpus=4-7 itmt=Y 12:22:21
+Throughput 420.802 MB/sec  1 clients  1 procs  max_latency=1.755 ms
+perf cpu4: busy 6.2% clock 5414MHz cpu5: busy 2.5% clock 5418MHz cpu6: busy 61.9% clock 5474MHz cpu7: busy 58.8% clock 5473MHz
+## round 1 tbench clients=1 cpus=4-7 itmt=N 12:22:58
+Throughput 431.184 MB/sec  1 clients  1 procs  max_latency=0.215 ms
+perf cpu4: busy 32.0% clock 5459MHz cpu5: busy 34.8% clock 5458MHz cpu6: busy 31.7% clock 5461MHz cpu7: busy 30.6% clock 5456MHz
+## round 2 tbench clients=1 cpus=4-7 itmt=N 12:23:35
+Throughput 425.87 MB/sec  1 clients  1 procs  max_latency=0.214 ms
+perf cpu4: busy 31.0% clock 5456MHz cpu5: busy 35.7% clock 5453MHz cpu6: busy 31.4% clock 5457MHz cpu7: busy 30.9% clock 5451MHz
+## round 2 tbench clients=1 cpus=4-7 itmt=Y 12:24:13
+Throughput 418.593 MB/sec  1 clients  1 procs  max_latency=2.561 ms
+perf cpu4: busy 4.5% clock 5393MHz cpu5: busy 1.1% clock 5385MHz cpu6: busy 62.5% clock 5463MHz cpu7: busy 61.4% clock 5463MHz
+## round 3 tbench clients=1 cpus=4-7 itmt=Y 12:24:50
+Throughput 417.86 MB/sec  1 clients  1 procs  max_latency=2.508 ms
+perf cpu4: busy 4.7% clock 5385MHz cpu5: busy 1.7% clock 5408MHz cpu6: busy 62.4% clock 5460MHz cpu7: busy 60.7% clock 5460MHz
+## round 3 tbench clients=1 cpus=4-7 itmt=N 12:25:27
+Throughput 417.247 MB/sec  1 clients  1 procs  max_latency=0.418 ms
+perf cpu4: busy 33.4% clock 5451MHz cpu5: busy 32.4% clock 5446MHz cpu6: busy 31.0% clock 5450MHz cpu7: busy 32.4% clock 5446MHz
+## round 4 tbench clients=1 cpus=4-7 itmt=N 12:26:04
+Throughput 417.142 MB/sec  1 clients  1 procs  max_latency=0.397 ms
+perf cpu4: busy 32.2% clock 5446MHz cpu5: busy 33.1% clock 5441MHz cpu6: busy 31.9% clock 5446MHz cpu7: busy 32.0% clock 5440MHz
+## round 4 tbench clients=1 cpus=4-7 itmt=Y 12:26:41
+Throughput 417.881 MB/sec  1 clients  1 procs  max_latency=0.417 ms
+perf cpu4: busy 3.7% clock 5358MHz cpu5: busy 1.4% clock 5378MHz cpu6: busy 63.0% clock 5453MHz cpu7: busy 61.3% clock 5452MHz
+## round 5 tbench clients=1 cpus=4-7 itmt=Y 12:27:18
+Throughput 418.24 MB/sec  1 clients  1 procs  max_latency=2.280 ms
+perf cpu4: busy 5.1% clock 5381MHz cpu5: busy 2.1% clock 5391MHz cpu6: busy 61.9% clock 5450MHz cpu7: busy 60.5% clock 5450MHz
+## round 5 tbench clients=1 cpus=4-7 itmt=N 12:27:55
+Throughput 416.919 MB/sec  1 clients  1 procs  max_latency=0.215 ms
+perf cpu4: busy 31.9% clock 5442MHz cpu5: busy 31.9% clock 5438MHz cpu6: busy 33.2% clock 5443MHz cpu7: busy 32.3% clock 5437MHz
+## round 6 tbench clients=1 cpus=4-7 itmt=N 12:28:32
+Throughput 416.174 MB/sec  1 clients  1 procs  max_latency=0.214 ms
+perf cpu4: busy 25.9% clock 5437MHz cpu5: busy 34.6% clock 5437MHz cpu6: busy 33.7% clock 5443MHz cpu7: busy 35.0% clock 5437MHz
+## round 6 tbench clients=1 cpus=4-7 itmt=Y 12:29:10
+Throughput 417.156 MB/sec  1 clients  1 procs  max_latency=0.213 ms
+perf cpu4: busy 4.5% clock 5373MHz cpu5: busy 1.4% clock 5365MHz cpu6: busy 62.9% clock 5446MHz cpu7: busy 60.8% clock 5446MHz
+## round 7 tbench clients=1 cpus=4-7 itmt=Y 12:29:47
+Throughput 416.765 MB/sec  1 clients  1 procs  max_latency=0.414 ms
+perf cpu4: busy 7.3% clock 5383MHz cpu5: busy 4.2% clock 5401MHz cpu6: busy 62.2% clock 5445MHz cpu7: busy 56.2% clock 5442MHz
+## round 7 tbench clients=1 cpus=4-7 itmt=N 12:30:24
+Throughput 416.752 MB/sec  1 clients  1 procs  max_latency=0.216 ms
+perf cpu4: busy 27.5% clock 5436MHz cpu5: busy 34.9% clock 5435MHz cpu6: busy 34.4% clock 5440MHz cpu7: busy 32.4% clock 5434MHz
+## round 8 tbench clients=1 cpus=4-7 itmt=N 12:31:01
+Throughput 416.567 MB/sec  1 clients  1 procs  max_latency=0.206 ms
+perf cpu4: busy 31.8% clock 5437MHz cpu5: busy 32.4% clock 5436MHz cpu6: busy 34.0% clock 5439MHz cpu7: busy 31.1% clock 5433MHz
+## round 8 tbench clients=1 cpus=4-7 itmt=Y 12:31:38
+Throughput 418.488 MB/sec  1 clients  1 procs  max_latency=0.796 ms
+perf cpu4: busy 3.8% clock 5365MHz cpu5: busy 1.3% clock 5373MHz cpu6: busy 62.5% clock 5444MHz cpu7: busy 61.8% clock 5444MHz
+# end=2026-11-04T12:32:14+01:00
+# restored itmt=Y
+# restored clocks: boost=0 min=4300000 max=4300000 - verified for every CPU
+# summary (python over the lines above): tbench 1 client on CPUs 4-7, free clocks, DELAY_DEQUEUE on, ITMT on/off with
+# the order alternated per round (odd on->off, even off->on), 8 rounds; perf stat msr aperf/mperf/tsc per CPU.
+#   placement: ITMT on -> CPU 6 62.4 % and CPU 7 60.2 % busy, CPUs 4/5 5.0/2.0 %; ITMT off -> 30.7/33.7/32.7/32.1 %.
+#   clock while busy (mean): ITMT on cpu6 5454, cpu7 5453 MHz; ITMT off cpu4-7 5441-5447 MHz.
+#   throughput, ITMT on vs off same round: -2.41 -1.71 +0.15 +0.18 +0.32 +0.24 +0.00 +0.46 % (rounds 1-8).
+#     Rounds 1-2 are the first runs after freeing the clocks and both settings drop ~3 % from there; rounds 3-8 (order
+#     balanced): ITMT on ahead in 5, tied in 1, by at most 0.46 %.
+#   max_latency ms: ITMT on 1.75 2.56 2.51 0.42 2.28 0.21 0.41 0.80; ITMT off 0.21 0.21 0.42 0.40 0.21 0.21 0.22 0.21.

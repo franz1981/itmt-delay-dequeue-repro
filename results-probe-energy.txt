@@ -1,0 +1,78 @@
+# free clocks: boost=1 min=425292 max=5883197 
+# clock sampler: off (set FREQ_SAMPLE=1 for a probed run)
+# probe-tbench.sh reps=8 secs=30 clients=1 cpus=4-7 start=2026-11-04T12:36:49+01:00 7.1.13-100.fc43.x86_64 itmt=Y DELAY_DEQUEUE boost=1 min=425292 max=5883197 tsc_mhz=4500
+## round 1 tbench clients=1 cpus=4-7 itmt=Y 12:36:51
+Throughput 421.844 MB/sec  1 clients  1 procs  max_latency=0.382 ms
+perf cpu4: busy 4.5% clock 5385MHz cpu5: busy 1.8% clock 5399MHz cpu6: busy 63.4% clock 5468MHz cpu7: busy 59.7% clock 5467MHz
+energy secs 36.10 pkg 3203.2 J (88.72 W) cores 4-7 767.76 J (21.27 W) all cores 1460.1 J (40.44 W) pkg_J_per_MB 210.321 mJ/MB cores_J_per_MB 50.412 mJ/MB
+## round 1 tbench clients=1 cpus=4-7 itmt=N 12:37:28
+Throughput 417.63 MB/sec  1 clients  1 procs  max_latency=0.365 ms
+perf cpu4: busy 28.9% clock 5455MHz cpu5: busy 34.7% clock 5456MHz cpu6: busy 32.6% clock 5459MHz cpu7: busy 33.0% clock 5453MHz
+energy secs 36.10 pkg 3262.3 J (90.36 W) cores 4-7 760.87 J (21.08 W) all cores 1457.5 J (40.37 W) pkg_J_per_MB 216.367 mJ/MB cores_J_per_MB 50.464 mJ/MB
+## round 2 tbench clients=1 cpus=4-7 itmt=N 12:38:05
+Throughput 417.625 MB/sec  1 clients  1 procs  max_latency=2.390 ms
+perf cpu4: busy 31.5% clock 5453MHz cpu5: busy 30.9% clock 5451MHz cpu6: busy 32.7% clock 5454MHz cpu7: busy 34.0% clock 5449MHz
+energy secs 36.10 pkg 3186.8 J (88.27 W) cores 4-7 760.79 J (21.07 W) all cores 1455.8 J (40.32 W) pkg_J_per_MB 211.366 mJ/MB cores_J_per_MB 50.459 mJ/MB
+## round 2 tbench clients=1 cpus=4-7 itmt=Y 12:38:42
+Throughput 418.036 MB/sec  1 clients  1 procs  max_latency=0.222 ms
+perf cpu4: busy 4.6% clock 5382MHz cpu5: busy 1.5% clock 5383MHz cpu6: busy 62.1% clock 5458MHz cpu7: busy 61.1% clock 5457MHz
+energy secs 36.10 pkg 3182.8 J (88.16 W) cores 4-7 765.70 J (21.21 W) all cores 1458.2 J (40.39 W) pkg_J_per_MB 210.887 mJ/MB cores_J_per_MB 50.735 mJ/MB
+## round 3 tbench clients=1 cpus=4-7 itmt=Y 12:39:20
+Throughput 418.251 MB/sec  1 clients  1 procs  max_latency=0.227 ms
+perf cpu4: busy 4.6% clock 5374MHz cpu5: busy 2.0% clock 5395MHz cpu6: busy 63.0% clock 5457MHz cpu7: busy 59.9% clock 5456MHz
+energy secs 36.10 pkg 3198.2 J (88.59 W) cores 4-7 765.05 J (21.19 W) all cores 1461.5 J (40.48 W) pkg_J_per_MB 211.805 mJ/MB cores_J_per_MB 50.666 mJ/MB
+## round 3 tbench clients=1 cpus=4-7 itmt=N 12:39:57
+Throughput 416.254 MB/sec  1 clients  1 procs  max_latency=0.219 ms
+perf cpu4: busy 31.6% clock 5445MHz cpu5: busy 33.3% clock 5440MHz cpu6: busy 31.8% clock 5445MHz cpu7: busy 32.5% clock 5440MHz
+energy secs 36.10 pkg 3205.0 J (88.77 W) cores 4-7 756.36 J (20.95 W) all cores 1452.8 J (40.24 W) pkg_J_per_MB 213.269 mJ/MB cores_J_per_MB 50.330 mJ/MB
+## round 4 tbench clients=1 cpus=4-7 itmt=N 12:40:34
+Throughput 416.64 MB/sec  1 clients  1 procs  max_latency=0.649 ms
+perf cpu4: busy 32.0% clock 5443MHz cpu5: busy 31.5% clock 5437MHz cpu6: busy 33.1% clock 5444MHz cpu7: busy 32.5% clock 5438MHz
+energy secs 36.10 pkg 3199.6 J (88.63 W) cores 4-7 754.72 J (20.90 W) all cores 1449.8 J (40.16 W) pkg_J_per_MB 212.714 mJ/MB cores_J_per_MB 50.174 mJ/MB
+## round 4 tbench clients=1 cpus=4-7 itmt=Y 12:41:11
+Throughput 417.275 MB/sec  1 clients  1 procs  max_latency=1.962 ms
+perf cpu4: busy 4.4% clock 5372MHz cpu5: busy 1.9% clock 5393MHz cpu6: busy 62.9% clock 5447MHz cpu7: busy 60.4% clock 5446MHz
+energy secs 36.10 pkg 3167.2 J (87.73 W) cores 4-7 759.41 J (21.03 W) all cores 1483.1 J (41.08 W) pkg_J_per_MB 210.238 mJ/MB cores_J_per_MB 50.410 mJ/MB
+## round 5 tbench clients=1 cpus=4-7 itmt=Y 12:41:48
+Throughput 416.72 MB/sec  1 clients  1 procs  max_latency=1.547 ms
+perf cpu4: busy 7.2% clock 5381MHz cpu5: busy 4.0% clock 5376MHz cpu6: busy 63.3% clock 5442MHz cpu7: busy 56.4% clock 5439MHz
+energy secs 36.10 pkg 3234.8 J (89.60 W) cores 4-7 757.65 J (20.99 W) all cores 1531.0 J (42.41 W) pkg_J_per_MB 215.009 mJ/MB cores_J_per_MB 50.360 mJ/MB
+## round 5 tbench clients=1 cpus=4-7 itmt=N 12:42:25
+Throughput 415.774 MB/sec  1 clients  1 procs  max_latency=0.549 ms
+perf cpu4: busy 31.5% clock 5437MHz cpu5: busy 31.2% clock 5434MHz cpu6: busy 33.4% clock 5438MHz cpu7: busy 33.2% clock 5434MHz
+energy secs 36.11 pkg 3147.6 J (87.17 W) cores 4-7 750.72 J (20.79 W) all cores 1474.5 J (40.84 W) pkg_J_per_MB 209.664 mJ/MB cores_J_per_MB 50.007 mJ/MB
+## round 6 tbench clients=1 cpus=4-7 itmt=N 12:43:02
+Throughput 416.175 MB/sec  1 clients  1 procs  max_latency=2.400 ms
+perf cpu4: busy 32.0% clock 5438MHz cpu5: busy 32.1% clock 5434MHz cpu6: busy 32.8% clock 5438MHz cpu7: busy 32.2% clock 5433MHz
+energy secs 36.10 pkg 3212.4 J (88.98 W) cores 4-7 754.04 J (20.89 W) all cores 1452.2 J (40.22 W) pkg_J_per_MB 213.801 mJ/MB cores_J_per_MB 50.185 mJ/MB
+## round 6 tbench clients=1 cpus=4-7 itmt=Y 12:43:40
+Throughput 417.097 MB/sec  1 clients  1 procs  max_latency=0.416 ms
+perf cpu4: busy 3.5% clock 5353MHz cpu5: busy 1.1% clock 5345MHz cpu6: busy 63.4% clock 5446MHz cpu7: busy 61.4% clock 5445MHz
+energy secs 36.10 pkg 3147.0 J (87.17 W) cores 4-7 757.76 J (20.99 W) all cores 1451.8 J (40.21 W) pkg_J_per_MB 208.986 mJ/MB cores_J_per_MB 50.322 mJ/MB
+## round 7 tbench clients=1 cpus=4-7 itmt=Y 12:44:17
+Throughput 416.452 MB/sec  1 clients  1 procs  max_latency=0.701 ms
+perf cpu4: busy 4.3% clock 5358MHz cpu5: busy 1.8% clock 5369MHz cpu6: busy 63.0% clock 5442MHz cpu7: busy 60.4% clock 5441MHz
+energy secs 36.10 pkg 3205.2 J (88.78 W) cores 4-7 756.64 J (20.96 W) all cores 1507.2 J (41.75 W) pkg_J_per_MB 213.184 mJ/MB cores_J_per_MB 50.325 mJ/MB
+## round 7 tbench clients=1 cpus=4-7 itmt=N 12:44:54
+Throughput 416.776 MB/sec  1 clients  1 procs  max_latency=0.750 ms
+perf cpu4: busy 33.7% clock 5435MHz cpu5: busy 34.4% clock 5433MHz cpu6: busy 30.1% clock 5435MHz cpu7: busy 31.0% clock 5430MHz
+energy secs 36.10 pkg 3154.2 J (87.37 W) cores 4-7 754.10 J (20.89 W) all cores 1467.4 J (40.64 W) pkg_J_per_MB 209.624 mJ/MB cores_J_per_MB 50.117 mJ/MB
+## round 8 tbench clients=1 cpus=4-7 itmt=N 12:45:31
+Throughput 416.746 MB/sec  1 clients  1 procs  max_latency=0.214 ms
+perf cpu4: busy 32.8% clock 5434MHz cpu5: busy 31.7% clock 5433MHz cpu6: busy 34.0% clock 5436MHz cpu7: busy 30.7% clock 5430MHz
+energy secs 36.10 pkg 3142.6 J (87.05 W) cores 4-7 753.74 J (20.88 W) all cores 1456.6 J (40.35 W) pkg_J_per_MB 208.872 mJ/MB cores_J_per_MB 50.097 mJ/MB
+## round 8 tbench clients=1 cpus=4-7 itmt=Y 12:46:08
+Throughput 416.862 MB/sec  1 clients  1 procs  max_latency=2.021 ms
+perf cpu4: busy 4.6% clock 5371MHz cpu5: busy 1.6% clock 5390MHz cpu6: busy 62.8% clock 5443MHz cpu7: busy 60.4% clock 5442MHz
+energy secs 36.10 pkg 3133.1 J (86.78 W) cores 4-7 760.14 J (21.05 W) all cores 1459.7 J (40.43 W) pkg_J_per_MB 208.181 mJ/MB cores_J_per_MB 50.508 mJ/MB
+# end=2026-11-04T12:46:44+01:00
+# restored itmt=Y
+# restored clocks: boost=0 min=4300000 max=4300000 - verified for every CPU
+# summary (python over the lines above): tbench 1 client, CPUs 4-7, free clocks, DELAY_DEQUEUE on, ITMT alternated
+# per round, 8 rounds, perf stat -a -A (msr aperf/mperf/tsc, power/energy-pkg, power_core/energy-core).
+#   throughput ITMT on vs off same round: +1.01 +0.10 +0.48 +0.15 +0.23 +0.22 -0.08 +0.03 % (on ahead 7/8; mean 417.82 vs 416.70)
+#   cores 4-7 power: on 21.09 W vs off 20.93 W; same round +0.34..+1.15 % (on higher 8/8)
+#   cores 4-7 energy per MB: on 50.47 vs off 50.23 mJ/MB; same round -0.10..+0.82 % (on higher 7/8)
+#   package power / energy per MB: same-round differences -2.8..+2.8 %, mixed sign: noise at this resolution
+#   max_latency ms: on 0.38 0.22 0.23 1.96 1.55 0.42 0.70 2.02; off 0.36 2.39 0.22 0.65 0.55 2.40 0.75 0.21
+#     -> unlike results-probe-tbench.txt, ITMT off also had ~2.4 ms worst cases here (2 of 8 runs).

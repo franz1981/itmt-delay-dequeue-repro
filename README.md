@@ -196,3 +196,18 @@ moved the other worker there; why the waiter's own wakeup still ended on CPU 6 i
 
 Not verified: why the wait is about one burst. The longest handoff in 30 s runs, 2.822 ms, is close to
 `base_slice_ns` (2.8 ms, `system.txt`); whether that is related is not known.
+
+## Follow-up, 2026-11-04: boost on, and throughput
+
+Same box and kernel. DELAY_DEQUEUE on unless stated; ITMT on/off alternated per round. Run as root.
+
+| script | what | results |
+|---|---|---|
+| `tbench-pinned.sh 3 30 1,2,4 4-7` | tbench (dbench 4.0, loopback) on CPUs 4-7, clocks pinned as found (boost off, 4300 MHz), ITMT x DELAY_DEQUEUE | `results-tbench-pinned.txt` |
+| `freeclock-tbench.sh 3 30 1,2,4 4-7` | the same with clocks freed (performance governor, boost on, full range), restored on exit | `results-freeclock-tbench.txt` |
+| `freeclock-ab.sh 3 30 8,32` | clocks freed: asym_min on CPUs 4-7 with fixed work per burst (`ASYM_ITERS`), tbench 8/32 clients on all CPUs, ITMT x DELAY_DEQUEUE | `results-freeclock.txt` |
+| `INNER=probe-tbench.sh freeclock-tbench.sh 8 30 1 4-7` | clocks freed, tbench 1 client on CPUs 4-7 under `perf stat` (msr aperf/mperf/tsc; second run also energy-pkg/energy-core) | `results-probe-tbench.txt`, `results-probe-energy.txt` |
+
+`asym_min.c` now takes `ASYM_ITERS` (fixed iterations per burst, to compare work across clock settings) and prints
+`burst_iters` in SUMMARY; nothing else changed. A stall is still a handoff of 0.5 ms or more (`stacked=` in SUMMARY).
+The `# summary` blocks at the end of the results files were computed from the lines above them.

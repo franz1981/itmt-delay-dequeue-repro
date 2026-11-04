@@ -163,6 +163,8 @@ int main(int argc, char **argv)
 		best = dt < best ? dt : best;
 	}
 	iters = (long) (1e6 * burst_us * 1000.0 / best) + (x == 42);
+	if (getenv("ASYM_ITERS"))	// fixed work per burst, e.g. to compare throughput across clock settings
+		iters = atol(getenv("ASYM_ITERS"));
 
 	if (sched_getaffinity(0, sizeof(allowed), &allowed))
 		die("sched_getaffinity");
@@ -188,8 +190,8 @@ int main(int argc, char **argv)
 	for (i = 0; i < 2; i++)
 		qsort(ws[i].handoff_ns, ws[i].wakes, sizeof(uint32_t), cmp_u32);
 	printf(" waker_cpu=%d seconds=%d stacked=%ld,%ld wakes=%ld,%ld handoff_p50_ms=%.3f,%.3f handoff_p99_ms=%.3f,%.3f"
-	       " handoff_p999_ms=%.3f,%.3f handoff_max_ms=%.3f,%.3f waker_wait%%=%.3f\n", waker_cpu, seconds,
+	       " handoff_p999_ms=%.3f,%.3f handoff_max_ms=%.3f,%.3f waker_wait%%=%.3f burst_iters=%ld\n", waker_cpu, seconds,
 	       ws[0].stacked, ws[1].stacked, ws[0].wakes, ws[1].wakes, pct(0, 500), pct(1, 500), pct(0, 990), pct(1, 990),
-	       pct(0, 999), pct(1, 999), pct(0, 1000), pct(1, 1000), waker_wait_pct);
+	       pct(0, 999), pct(1, 999), pct(0, 1000), pct(1, 1000), waker_wait_pct, iters);
 	return 0;
 }

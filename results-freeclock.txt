@@ -1,0 +1,90 @@
+built
+# freeclock-ab.sh reps=3 secs=30 clients=8,32 start=2026-11-04T11:09:57+01:00 7.1.13-100.fc43.x86_64 saved: boost=0 itmt=Y DELAY_DEQUEUE governor=performance min/max=4300000 4300000 loadavg=0.56 0.93 1.03
+# ASYM_ITERS=1068739 (calibrated for 1 ms at the clocks found at start)
+# free clocks: boost=1 governor=performance min=425292 max=5883197 
+## round 1 asym_min itmt=Y DELAY_DEQUEUE 11:10:00
+SUMMARY itmt=Y delay_dequeue=Y allowed_cpus=4,5,6,7 waker_cpu=2 seconds=30 stacked=304,306 wakes=37385,37376 handoff_p50_ms=0.002,0.002 handoff_p99_ms=0.130,0.069 handoff_p999_ms=0.777,0.777 handoff_max_ms=0.784,0.786 waker_wait%=0.021 burst_iters=1068739
+## round 1 tbench clients=8 itmt=Y DELAY_DEQUEUE 11:10:31
+Throughput 3049.81 MB/sec  8 clients  8 procs  max_latency=0.897 ms
+## round 1 tbench clients=32 itmt=Y DELAY_DEQUEUE 11:11:07
+Throughput 9322.93 MB/sec  32 clients  32 procs  max_latency=8.846 ms
+## round 1 asym_min itmt=N DELAY_DEQUEUE 11:11:44
+SUMMARY itmt=N delay_dequeue=Y allowed_cpus=4,5,6,7 waker_cpu=2 seconds=30 stacked=0,0 wakes=37442,37445 handoff_p50_ms=0.002,0.002 handoff_p99_ms=0.003,0.003 handoff_p999_ms=0.014,0.004 handoff_max_ms=0.063,0.007 waker_wait%=0.015 burst_iters=1068739
+## round 1 tbench clients=8 itmt=N DELAY_DEQUEUE 11:12:14
+Throughput 3067.63 MB/sec  8 clients  8 procs  max_latency=0.598 ms
+## round 1 tbench clients=32 itmt=N DELAY_DEQUEUE 11:12:50
+Throughput 9220.07 MB/sec  32 clients  32 procs  max_latency=12.403 ms
+## round 1 asym_min itmt=Y NO_DELAY_DEQUEUE 11:13:27
+SUMMARY itmt=Y delay_dequeue=N allowed_cpus=4,5,6,7 waker_cpu=2 seconds=30 stacked=10,8 wakes=37515,37514 handoff_p50_ms=0.002,0.002 handoff_p99_ms=0.003,0.003 handoff_p999_ms=0.005,0.005 handoff_max_ms=0.788,0.979 waker_wait%=0.007 burst_iters=1068739
+## round 1 tbench clients=8 itmt=Y NO_DELAY_DEQUEUE 11:13:57
+Throughput 3058.56 MB/sec  8 clients  8 procs  max_latency=1.038 ms
+## round 1 tbench clients=32 itmt=Y NO_DELAY_DEQUEUE 11:14:33
+Throughput 8872.48 MB/sec  32 clients  32 procs  max_latency=10.565 ms
+## round 1 asym_min itmt=N NO_DELAY_DEQUEUE 11:15:10
+SUMMARY itmt=N delay_dequeue=N allowed_cpus=4,5,6,7 waker_cpu=2 seconds=30 stacked=0,0 wakes=37387,37395 handoff_p50_ms=0.002,0.002 handoff_p99_ms=0.003,0.003 handoff_p999_ms=0.020,0.004 handoff_max_ms=0.033,0.017 waker_wait%=0.021 burst_iters=1068739
+## round 1 tbench clients=8 itmt=N NO_DELAY_DEQUEUE 11:15:40
+Throughput 3065.18 MB/sec  8 clients  8 procs  max_latency=0.541 ms
+## round 1 tbench clients=32 itmt=N NO_DELAY_DEQUEUE 11:16:16
+Throughput 9005.75 MB/sec  32 clients  32 procs  max_latency=17.390 ms
+## round 2 asym_min itmt=Y DELAY_DEQUEUE 11:16:53
+SUMMARY itmt=Y delay_dequeue=Y allowed_cpus=4,5,6,7 waker_cpu=2 seconds=30 stacked=357,357 wakes=36946,36950 handoff_p50_ms=0.002,0.002 handoff_p99_ms=0.430,0.428 handoff_p999_ms=0.787,0.787 handoff_max_ms=0.793,0.794 waker_wait%=0.006 burst_iters=1068739
+## round 2 tbench clients=8 itmt=Y DELAY_DEQUEUE 11:17:23
+Throughput 3045.25 MB/sec  8 clients  8 procs  max_latency=1.509 ms
+## round 2 tbench clients=32 itmt=Y DELAY_DEQUEUE 11:18:00
+Throughput 9229.18 MB/sec  32 clients  32 procs  max_latency=8.617 ms
+## round 2 asym_min itmt=N DELAY_DEQUEUE 11:18:37
+SUMMARY itmt=N delay_dequeue=Y allowed_cpus=4,5,6,7 waker_cpu=2 seconds=30 stacked=0,0 wakes=37267,37263 handoff_p50_ms=0.002,0.002 handoff_p99_ms=0.003,0.003 handoff_p999_ms=0.004,0.023 handoff_max_ms=0.005,0.032 waker_wait%=0.005 burst_iters=1068739
+## round 2 tbench clients=8 itmt=N DELAY_DEQUEUE 11:19:07
+Throughput 3038.49 MB/sec  8 clients  8 procs  max_latency=0.532 ms
+## round 2 tbench clients=32 itmt=N DELAY_DEQUEUE 11:19:43
+Throughput 9129.09 MB/sec  32 clients  32 procs  max_latency=13.985 ms
+## round 2 asym_min itmt=Y NO_DELAY_DEQUEUE 11:20:20
+SUMMARY itmt=Y delay_dequeue=N allowed_cpus=4,5,6,7 waker_cpu=2 seconds=30 stacked=12,13 wakes=37301,37299 handoff_p50_ms=0.002,0.002 handoff_p99_ms=0.003,0.003 handoff_p999_ms=0.005,0.005 handoff_max_ms=0.791,0.791 waker_wait%=0.022 burst_iters=1068739
+## round 2 tbench clients=8 itmt=Y NO_DELAY_DEQUEUE 11:20:50
+Throughput 3041.67 MB/sec  8 clients  8 procs  max_latency=2.887 ms
+## round 2 tbench clients=32 itmt=Y NO_DELAY_DEQUEUE 11:21:26
+Throughput 8857.21 MB/sec  32 clients  32 procs  max_latency=10.316 ms
+## round 2 asym_min itmt=N NO_DELAY_DEQUEUE 11:22:03
+SUMMARY itmt=N delay_dequeue=N allowed_cpus=4,5,6,7 waker_cpu=2 seconds=30 stacked=0,0 wakes=37160,37163 handoff_p50_ms=0.002,0.002 handoff_p99_ms=0.003,0.003 handoff_p999_ms=0.017,0.004 handoff_max_ms=0.030,0.005 waker_wait%=0.014 burst_iters=1068739
+## round 2 tbench clients=8 itmt=N NO_DELAY_DEQUEUE 11:22:33
+Throughput 3038.53 MB/sec  8 clients  8 procs  max_latency=0.531 ms
+## round 2 tbench clients=32 itmt=N NO_DELAY_DEQUEUE 11:23:09
+Throughput 8905.91 MB/sec  32 clients  32 procs  max_latency=9.422 ms
+## round 3 asym_min itmt=Y DELAY_DEQUEUE 11:23:46
+SUMMARY itmt=Y delay_dequeue=Y allowed_cpus=4,5,6,7 waker_cpu=2 seconds=30 stacked=401,401 wakes=36731,36731 handoff_p50_ms=0.002,0.002 handoff_p99_ms=0.740,0.704 handoff_p999_ms=0.790,0.789 handoff_max_ms=0.793,0.795 waker_wait%=0.017 burst_iters=1068739
+## round 3 tbench clients=8 itmt=Y DELAY_DEQUEUE 11:24:16
+Throughput 3017.57 MB/sec  8 clients  8 procs  max_latency=0.954 ms
+## round 3 tbench clients=32 itmt=Y DELAY_DEQUEUE 11:24:52
+Throughput 9052.19 MB/sec  32 clients  32 procs  max_latency=11.987 ms
+## round 3 asym_min itmt=N DELAY_DEQUEUE 11:25:30
+SUMMARY itmt=N delay_dequeue=Y allowed_cpus=4,5,6,7 waker_cpu=2 seconds=30 stacked=0,0 wakes=37160,37167 handoff_p50_ms=0.002,0.002 handoff_p99_ms=0.003,0.003 handoff_p999_ms=0.021,0.004 handoff_max_ms=0.032,0.007 waker_wait%=0.023 burst_iters=1068739
+## round 3 tbench clients=8 itmt=N DELAY_DEQUEUE 11:26:00
+Throughput 3023.65 MB/sec  8 clients  8 procs  max_latency=0.577 ms
+## round 3 tbench clients=32 itmt=N DELAY_DEQUEUE 11:26:36
+Throughput 9058.75 MB/sec  32 clients  32 procs  max_latency=11.106 ms
+## round 3 asym_min itmt=Y NO_DELAY_DEQUEUE 11:27:13
+SUMMARY itmt=Y delay_dequeue=N allowed_cpus=4,5,6,7 waker_cpu=2 seconds=30 stacked=15,15 wakes=37183,37184 handoff_p50_ms=0.002,0.002 handoff_p99_ms=0.003,0.003 handoff_p999_ms=0.006,0.006 handoff_max_ms=0.798,0.793 waker_wait%=0.023 burst_iters=1068739
+## round 3 tbench clients=8 itmt=Y NO_DELAY_DEQUEUE 11:27:43
+Throughput 3045.54 MB/sec  8 clients  8 procs  max_latency=1.093 ms
+## round 3 tbench clients=32 itmt=Y NO_DELAY_DEQUEUE 11:28:19
+Throughput 8928.43 MB/sec  32 clients  32 procs  max_latency=17.371 ms
+## round 3 asym_min itmt=N NO_DELAY_DEQUEUE 11:28:56
+SUMMARY itmt=N delay_dequeue=N allowed_cpus=4,5,6,7 waker_cpu=2 seconds=30 stacked=0,0 wakes=37044,37045 handoff_p50_ms=0.002,0.002 handoff_p99_ms=0.003,0.003 handoff_p999_ms=0.004,0.004 handoff_max_ms=0.029,0.005 waker_wait%=0.016 burst_iters=1068739
+## round 3 tbench clients=8 itmt=N NO_DELAY_DEQUEUE 11:29:26
+Throughput 3008.98 MB/sec  8 clients  8 procs  max_latency=0.957 ms
+## round 3 tbench clients=32 itmt=N NO_DELAY_DEQUEUE 11:30:02
+Throughput 8905.52 MB/sec  32 clients  32 procs  max_latency=6.188 ms
+# end=2026-11-04T11:30:38+01:00
+# restored: boost=0 itmt=Y DELAY_DEQUEUE governor=performance  min=4300000  max=4300000 
+# restore verified for every CPU
+# summary (python over the lines above; free clocks: performance governor, boost on, 425 MHz..5.88 GHz):
+# asym_min CPUs 4-7, ASYM_ITERS=1068739 per burst, bursts per 30 s (both threads) by round 1/2/3; stalls (both threads)
+#   ITMT on,  DELAY_DEQUEUE    74761 73896 73462  mean 74040           stalls 610 714 802
+#   ITMT off, DELAY_DEQUEUE    74887 74530 74327  mean 74581 (+0.73 %) stalls 0 0 0
+#   ITMT on,  NO_DELAY_DEQUEUE 75029 74600 74367  mean 74665 (+0.85 %) stalls 18 25 30
+#   ITMT off, NO_DELAY_DEQUEUE 74782 74323 74089  mean 74398 (+0.48 %) stalls 0 0 0
+#   ITMT on + DELAY_DEQUEUE is the lowest of the four in every round. All configs drift down across rounds.
+# tbench whole box, MB/s by round 1/2/3:
+#   8 clients:  3050 3045 3018 | 3068 3038 3024 | 3059 3042 3046 | 3065 3039 3009 (same config order): ranges overlap.
+#   32 clients: 9323 9229 9052 | 9220 9129 9059 | 8872 8857 8928 | 9006 8906 8906
+#     DELAY_DEQUEUE on > off in every round (ITMT on: -3.4 % without it; ITMT off: -2.2 %); ITMT on vs off: ranges overlap.
