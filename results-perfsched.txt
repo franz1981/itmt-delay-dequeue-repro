@@ -1,0 +1,144 @@
+# perfsched.sh reps=3 secs=30 start=2026-11-04T09:00:05+01:00 7.1.13-100.fc43.x86_64 itmt=Y DELAY_DEQUEUE boost=0 loadavg=0.18 0.47 0.30
+## run 1 09:00:05: perf sched record -a -m 64M -o perfsched/run1.data -- taskset -c 4-7 ./asym_min 1000 10 30 2
+SUMMARY itmt=Y delay_dequeue=Y allowed_cpus=4,5,6,7 waker_cpu=2 seconds=30 stacked=50,50 wakes=29421,29424 handoff_p50_ms=0.004,0.004 handoff_p99_ms=0.004,0.005 handoff_p999_ms=0.999,0.998 handoff_max_ms=1.004,1.013 waker_wait%=0.029
+[ perf record: Woken up 1 times to write data ]
+[ perf record: Captured and wrote 47.944 MB perfsched/run1.data (448622 samples) ]
+## run 2 09:00:37: perf sched record -a -m 64M -o perfsched/run2.data -- taskset -c 4-7 ./asym_min 1000 10 30 2
+SUMMARY itmt=Y delay_dequeue=Y allowed_cpus=4,5,6,7 waker_cpu=2 seconds=30 stacked=66,66 wakes=29406,29404 handoff_p50_ms=0.004,0.004 handoff_p99_ms=0.005,0.005 handoff_p999_ms=0.999,0.999 handoff_max_ms=1.010,1.003 waker_wait%=0.019
+[ perf record: Woken up 1 times to write data ]
+[ perf record: Captured and wrote 50.817 MB perfsched/run2.data (475681 samples) ]
+## run 3 09:01:09: perf sched record -a -m 64M -o perfsched/run3.data -- taskset -c 4-7 ./asym_min 1000 10 30 2
+SUMMARY itmt=Y delay_dequeue=Y allowed_cpus=4,5,6,7 waker_cpu=2 seconds=30 stacked=29,26 wakes=29449,29448 handoff_p50_ms=0.004,0.004 handoff_p99_ms=0.004,0.004 handoff_p999_ms=0.499,0.198 handoff_max_ms=1.004,1.007 waker_wait%=0.028
+[ perf record: Woken up 1 times to write data ]
+[ perf record: Captured and wrote 46.462 MB perfsched/run3.data (435174 samples) ]
+# end=2026-11-04T09:01:41+01:00
+
+# perfsched_summary.py on each run (perf sched timehist -i perfsched/runN.data -w -M --state):
+## run1
+# workers [2716061, 2716062]  unparsed event lines 5760
+# 
+# wakeup on a busy CPU waits >= 0.5 ms: 95 per tid {2716061: 47, 2716062: 48} by cpu {6: 95}
+#   wait ms min 0.583 max 1.010
+#   waited-on CPU idle share: max 0.005
+#   all 3 other CPUs <idle> >= 99% of the wait: 95/95
+#   all 3 other CPUs <idle> >= 90% of the wait: 95/95
+#   at least 1 other CPU <idle> >= 99% of the wait: 95/95
+#   waiting worker's own wakeup migrated it: 2/95
+#   newest migration of either worker onto that CPU, (by task, which worker): {('migration/7', 'other'): 52, ('migration/7', 'waiter'): 39, ('migration/4', 'waiter'): 2, ('migration/4', 'other'): 2}
+#   ... ms before the wait started: min -0.001 median 4.012 max 26.001; within 2 ms: 30/95
+# 
+# wakeup ending on a CPU that was idle >= 1 % of the wait waits >= 0.5 ms: 5 per tid {2716061: 3, 2716062: 2} by cpu {5: 2, 7: 3}
+#   wait ms min 0.768 max 0.972
+#   waited-on CPU idle share: max 1.000
+#   all 3 other CPUs <idle> >= 99% of the wait: 0/5
+#   all 3 other CPUs <idle> >= 90% of the wait: 0/5
+#   at least 1 other CPU <idle> >= 99% of the wait: 5/5
+#   waiting worker's own wakeup migrated it: 0/5
+#   newest migration of either worker onto that CPU, (by task, which worker): {('swapper', 'waiter'): 5}
+#   ... ms before the wait started: min -0.969 median -0.920 max -0.764; within 2 ms: 5/5
+# 
+# preempted on a busy CPU waits >= 0.5 ms: 19 per tid {2716061: 11, 2716062: 8} by cpu {6: 19}
+#   wait ms min 0.581 max 1.313
+#   waited-on CPU idle share: max 0.000
+#   all 3 other CPUs <idle> >= 99% of the wait: 18/19
+#   all 3 other CPUs <idle> >= 90% of the wait: 18/19
+#   at least 1 other CPU <idle> >= 99% of the wait: 19/19
+# 
+# preempted ending on a CPU that was idle >= 1 % of the wait waits >= 0.5 ms: 1 per tid {2716061: 1} by cpu {4: 1}
+#   wait ms min 0.537 max 0.537
+#   waited-on CPU idle share: max 0.888
+#   all 3 other CPUs <idle> >= 99% of the wait: 0/1
+#   all 3 other CPUs <idle> >= 90% of the wait: 0/1
+#   at least 1 other CPU <idle> >= 99% of the wait: 1/1
+## run2
+# workers [2716481, 2716482]  unparsed event lines 7672
+# 
+# wakeup on a busy CPU waits >= 0.5 ms: 125 per tid {2716481: 64, 2716482: 61} by cpu {6: 124, 7: 1}
+#   wait ms min 0.574 max 1.008
+#   waited-on CPU idle share: max 0.004
+#   all 3 other CPUs <idle> >= 99% of the wait: 124/125
+#   all 3 other CPUs <idle> >= 90% of the wait: 124/125
+#   at least 1 other CPU <idle> >= 99% of the wait: 125/125
+#   waiting worker's own wakeup migrated it: 0/125
+#   newest migration of either worker onto that CPU, (by task, which worker): {('migration/7', 'waiter'): 59, ('migration/7', 'other'): 65, ('migration/4', 'waiter'): 1}
+#   ... ms before the wait started: min -0.000 median 3.255 max 844.689; within 2 ms: 39/125
+# 
+# wakeup ending on a CPU that was idle >= 1 % of the wait waits >= 0.5 ms: 7 per tid {2716481: 2, 2716482: 5} by cpu {4: 2, 5: 2, 7: 3}
+#   wait ms min 0.597 max 1.000
+#   waited-on CPU idle share: max 1.000
+#   all 3 other CPUs <idle> >= 99% of the wait: 0/7
+#   all 3 other CPUs <idle> >= 90% of the wait: 0/7
+#   at least 1 other CPU <idle> >= 99% of the wait: 7/7
+#   waiting worker's own wakeup migrated it: 0/7
+#   newest migration of either worker onto that CPU, (by task, which worker): {('swapper', 'waiter'): 6, ('kworker/u128:1-', 'waiter'): 1}
+#   ... ms before the wait started: min -0.997 median -0.920 max -0.593; within 2 ms: 7/7
+# 
+# preempted on a busy CPU waits >= 0.5 ms: 27 per tid {2716481: 13, 2716482: 14} by cpu {6: 27}
+#   wait ms min 0.581 max 1.007
+#   waited-on CPU idle share: max 0.000
+#   all 3 other CPUs <idle> >= 99% of the wait: 26/27
+#   all 3 other CPUs <idle> >= 90% of the wait: 27/27
+#   at least 1 other CPU <idle> >= 99% of the wait: 27/27
+# 
+# preempted ending on a CPU that was idle >= 1 % of the wait waits >= 0.5 ms: 1 per tid {2716482: 1} by cpu {7: 1}
+#   wait ms min 1.001 max 1.001
+#   waited-on CPU idle share: max 0.989
+#   all 3 other CPUs <idle> >= 99% of the wait: 0/1
+#   all 3 other CPUs <idle> >= 90% of the wait: 0/1
+#   at least 1 other CPU <idle> >= 99% of the wait: 1/1
+## run3
+# workers [2716726, 2716727]  unparsed event lines 5676
+# 
+# wakeup on a busy CPU waits >= 0.5 ms: 51 per tid {2716726: 26, 2716727: 25} by cpu {6: 51}
+#   wait ms min 0.583 max 1.003
+#   waited-on CPU idle share: max 0.005
+#   all 3 other CPUs <idle> >= 99% of the wait: 51/51
+#   all 3 other CPUs <idle> >= 90% of the wait: 51/51
+#   at least 1 other CPU <idle> >= 99% of the wait: 51/51
+#   waiting worker's own wakeup migrated it: 1/51
+#   newest migration of either worker onto that CPU, (by task, which worker): {('migration/7', 'other'): 25, ('migration/7', 'waiter'): 26}
+#   ... ms before the wait started: min -0.001 median 2.040 max 14.989; within 2 ms: 22/51
+# 
+# wakeup ending on a CPU that was idle >= 1 % of the wait waits >= 0.5 ms: 4 per tid {2716726: 3, 2716727: 1} by cpu {5: 2, 7: 2}
+#   wait ms min 0.500 max 0.997
+#   waited-on CPU idle share: max 1.000
+#   all 3 other CPUs <idle> >= 99% of the wait: 0/4
+#   all 3 other CPUs <idle> >= 90% of the wait: 0/4
+#   at least 1 other CPU <idle> >= 99% of the wait: 4/4
+#   waiting worker's own wakeup migrated it: 0/4
+#   newest migration of either worker onto that CPU, (by task, which worker): {('ntloop-thread-0', 'waiter'): 1, ('swapper', 'waiter'): 3}
+#   ... ms before the wait started: min -0.994 median -0.905 max -0.497; within 2 ms: 4/4
+# 
+# preempted on a busy CPU waits >= 0.5 ms: 12 per tid {2716726: 4, 2716727: 8} by cpu {6: 12}
+#   wait ms min 0.590 max 1.008
+#   waited-on CPU idle share: max 0.000
+#   all 3 other CPUs <idle> >= 99% of the wait: 12/12
+#   all 3 other CPUs <idle> >= 90% of the wait: 12/12
+#   at least 1 other CPU <idle> >= 99% of the wait: 12/12
+# 
+# preempted ending on a CPU that was idle >= 1 % of the wait waits >= 0.5 ms: 1 per tid {2716727: 1} by cpu {7: 1}
+#   wait ms min 1.001 max 1.001
+#   waited-on CPU idle share: max 0.990
+#   all 3 other CPUs <idle> >= 99% of the wait: 0/1
+#   all 3 other CPUs <idle> >= 90% of the wait: 0/1
+#   at least 1 other CPU <idle> >= 99% of the wait: 1/1
+# Checks: per thread, wakeup waits >= 0.5 ms (busy CPU + ending on an idle CPU) equal asym_min's stacked= in all 3 runs
+#   (47+3, 48+2 | 64+2, 61+5 | 26+3, 25+1). Unparsed timehist lines are events of tasks with spaces in their names;
+#   none is an asym-worker switch, wakeup or migration. No LOST events (perf report --stats).
+# Totals: 287 wakeup waits >= 0.5 ms. 271 on a busy CPU (270 on CPU 6, 1 on CPU 7); CPUs other than the waited-on
+#   one all ran <idle> >= 99 % of the wait in 270/271. The other 16 started on CPU 6 and the waiting thread was
+#   migrated off CPU 6 0.5-1.0 ms into the wait (logged by swapper on CPU 0 in 10, swapper on the destination in 4,
+#   other tasks in 2). Preempted (state R) waits >= 0.5 ms on CPU 6: 58, other CPUs <idle> >= 99 % in 56/58.
+# On CPU 6 only: 270 waits; CPUs 4, 5, 7 all <idle> >= 99 % in 270/270 (the 271st busy wait was on CPU 7);
+#   the other worker ran on CPU 6 for >= 99.4 % of the wait in 270/270.
+# "<idle>" = perf's idle-task rows (sched_switch to/from pid 0), not idle_cpu().
+# perfsched/cpus-2_4-7/: an earlier 3-run recording with -C 2,4-7 (not all CPUs): migrations done from CPUs outside
+#   that set (e.g. CPU 0) are missing there; stalls 98-177 per thread, above the untraced range. Not used.
+# CORRECTED 2026-11-04 13:04 (supersedes the '#' summary and script output above, which came from an earlier version
+# of perfsched_summary.py that subtracted perf's microsecond-rounded durations). Fixed perfsched_summary.py, all times
+# from event timestamps, runs 1/2/3:
+#   wakeup waits >= 0.5 ms, not migrated during the wait: 95 / 124 / 51 = 270, all on CPU 6; the other worker ran on
+#     CPU 6 for >= 99.36 % of each; CPUs 4, 5 and 7 all ran <idle> >= 98 % of the wait in 270/270, >= 99 % in 269/270.
+#   wakeup waits >= 0.5 ms migrated off CPU 6 during the wait: 5 / 7 / 4 = 16.
+#   total 286 vs asym_min's own stacked= count 287 (run 2: 131 vs 132); the unmatched wait is not explained.
+#   preempted (state R) waits >= 0.5 ms on CPU 6: 19 / 27 / 12 (+1 migrated per run).

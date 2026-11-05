@@ -211,3 +211,12 @@ Same box and kernel. DELAY_DEQUEUE on unless stated; ITMT on/off alternated per 
 `asym_min.c` now takes `ASYM_ITERS` (fixed iterations per burst, to compare work across clock settings) and prints
 `burst_iters` in SUMMARY; nothing else changed. A stall is still a handoff of 0.5 ms or more (`stacked=` in SUMMARY).
 The `# summary` blocks at the end of the results files were computed from the lines above them.
+
+## perf sched trace, 2026-11-04
+
+`perfsched.sh` runs `perf sched record -a -- taskset -c 4-7 ./asym_min 1000 10 30 2` three times (clocks pinned, boost
+off, ITMT and DELAY_DEQUEUE on); `perfsched_summary.py` reads `perf sched timehist -w -M --state` and counts, per wait
+of 0.5 ms or more, where it happened, whether a worker migrated during it and how much of it the other allowed CPUs
+spent in `<idle>`. Results: `results-perfsched.txt` (the `# CORRECTED` block at the end supersedes the summary above
+it). `perfsched/excerpt-run2.txt`: unedited timehist lines of one episode start. The perf.data files are not
+published (`-a` records every task on the machine).
